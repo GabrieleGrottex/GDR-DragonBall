@@ -10,4 +10,12 @@ package gdr.dragonball;
  */
 public class GestoreDanni {
     
+    public static int calcola(int baseAttacco, int baseDifesa, boolean staDifendendo) {
+        int dannoFinale = baseAttacco - (baseDifesa / 2);
+        if (staDifendendo) {
+            dannoFinale /= 2;
+        } 
+        return Math.max(dannoFinale, 5); 
+    }
 }
+
