@@ -16,11 +16,15 @@ class GestoreCombattimento {
     private Mappa mappa;
     private Random rand = new Random();
 
-    public GestoreCombattimento(Personaggio p1, Personaggio p2, Mappa m) {
+    public GestoreCombattimento(Personaggio p1, Personaggio p2, Mappa m, Difficolta d) {
         this.giocatore = new StatoCombattimento(p1);
         this.avversario = new StatoCombattimento(p2);
+        this.avversario.hpAttuali += d.bonusHP_IA; 
         this.mappa = m;
+        this.difficolta = d; 
     }
+
+    int mossa = difficolta.decideMossa(avversario.kiAttuale);
 
     public void eseguiTurno(int mossaPlayer) {
         int mossaIA = rand.nextInt(4) + 1;
@@ -53,6 +57,7 @@ class GestoreCombattimento {
 
         mostraStato();
     }
+    
 
     private void preparaTurno(StatoCombattimento s, int mossa) {
         s.inDifesa = (mossa == 2);
