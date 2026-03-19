@@ -9,5 +9,21 @@ package gdr.dragonball;
  * @author grottelli.gabriele
  */
 public class StatoCombattimento {
-    
+    public Personaggio p;
+    public int hpAttuali;
+    public int kiAttuale;
+    public boolean inDifesa;
+    public boolean staSchivando;
+
+    public StatoCombattimento(Personaggio p) {
+        this.p = p;
+        this.hpAttuali = p.hp;
+        this.kiAttuale = p.ki;
+        this.inDifesa = false;
+        this.staSchivando = false;
+    }
+
+    public boolean isVivo() {
+        return hpAttuali > 0;
+    }
 }
