@@ -35,6 +35,8 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        btnIndietro = new javax.swing.JButton();
+        btnAvanti = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -52,23 +54,34 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
 
         jButton6.setText("jButton6");
 
+        btnIndietro.setText("jButton7");
+
+        btnAvanti.setText("jButton8");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jButton1)
-                .addGap(71, 71, 71)
-                .addComponent(jButton2)
-                .addGap(86, 86, 86)
-                .addComponent(jButton3)
-                .addGap(78, 78, 78)
-                .addComponent(jButton4)
-                .addGap(77, 77, 77)
-                .addComponent(jButton5)
-                .addGap(58, 58, 58)
-                .addComponent(jButton6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton1)
+                        .addGap(71, 71, 71)
+                        .addComponent(jButton2)
+                        .addGap(86, 86, 86)
+                        .addComponent(jButton3)
+                        .addGap(78, 78, 78)
+                        .addComponent(jButton4)
+                        .addGap(77, 77, 77)
+                        .addComponent(jButton5)
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(289, 289, 289)
+                        .addComponent(btnIndietro)
+                        .addGap(165, 165, 165)
+                        .addComponent(btnAvanti)))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,7 +95,11 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIndietro)
+                    .addComponent(btnAvanti))
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -114,6 +131,8 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAvanti;
+    private javax.swing.JButton btnIndietro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
