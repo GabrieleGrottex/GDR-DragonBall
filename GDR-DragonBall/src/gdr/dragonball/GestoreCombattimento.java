@@ -14,20 +14,25 @@ class GestoreCombattimento {
     private StatoCombattimento giocatore;
     private StatoCombattimento avversario;
     private Mappa mappa;
-    private Random rand = new Random();
+    private Difficoltà difficolta; 
+    private Random rand = new Random();;
 
-    public GestoreCombattimento(Personaggio p1, Personaggio p2, Mappa m, Difficolta d) {
+    public GestoreCombattimento(Personaggio p1, Personaggio p2, Mappa m, Difficoltà d) {
         this.giocatore = new StatoCombattimento(p1);
         this.avversario = new StatoCombattimento(p2);
-        this.avversario.hpAttuali += d.bonusHP_IA; 
-        this.mappa = m;
         this.difficolta = d; 
+        this.avversario.hpAttuali += d.bonusHP; 
+        this.mappa = m;
     }
 
-    int mossa = difficolta.decideMossa(avversario.kiAttuale);
-
     public void eseguiTurno(int mossaPlayer) {
-        int mossaIA = rand.nextInt(4) + 1;
+        
+        int mossaIA = difficolta.decideMossa(avversario.kiAttuale);
+
+        giocatore.staSchivando = false;
+        giocatore.inDifesa = false;
+        avversario.staSchivando = false;
+        avversario.inDifesa = false;
 
         preparaTurno(giocatore, mossaPlayer);
         preparaTurno(avversario, mossaIA);
@@ -41,23 +46,25 @@ class GestoreCombattimento {
                 avversario.hpAttuali -= danno;
                 System.out.println("Hai colpito " + avversario.p.nome + " per " + danno + " danni!");
             }
+        } else if (mossaPlayer == 3) { 
+            giocatore.kiAttuale += 25; 
+            System.out.println("Carichi il tuo KI (+25)."); 
         }
         
         if (mossaIA == 1) {
             int danno = GestoreDanni.calcola(avversario, giocatore, mappa);
             if (danno == 0) System.out.println("Zhan-Ken! Hai schivato l'attacco nemico!");
             else {
-                giocatore.hpAttuali -= danno;
+                giocatore.hpAttuali -= (int)(danno * difficolta.moltiplicatoreDanno); 
                 System.out.println(avversario.p.nome + " ti colpisce per " + danno + " danni!");
             }
+        } else if (mossaIA == 3) { 
+            avversario.kiAttuale += 25; 
+            System.out.println(avversario.p.nome + " carica l'Aura."); 
         }
-
-        if (mossaPlayer == 3) { giocatore.kiAttuale += 25; System.out.println("Carichi il tuo KI (+25)."); }
-        if (mossaIA == 3) { avversario.kiAttuale += 25; System.out.println(avversario.p.nome + " carica l'Aura."); }
 
         mostraStato();
     }
-    
 
     private void preparaTurno(StatoCombattimento s, int mossa) {
         s.inDifesa = (mossa == 2);
