@@ -18,6 +18,8 @@ public class Personaggio {
 
         switch (scelta) {
             // --- SAGA GOKU & VEGETA ---
+            case "goku_ragazzo":
+                this.setStatistiche("Goku (Ragazzo)", 150, 50, 25, 30, "Kamehameha"); break;
             case "goku_adulto":
                 this.setStatistiche("Goku (Adulto)", 200, 100, 40, 30, "Super Kamehameha"); break;
             case "goku_gt":
