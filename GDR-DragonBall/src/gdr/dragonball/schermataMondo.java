@@ -28,42 +28,82 @@ public class schermataMondo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        btnIndietroMapa = new javax.swing.JButton();
-        btnAvantiMappa = new javax.swing.JButton();
+        btnInventario = new javax.swing.JButton();
+        btnEsplora = new javax.swing.JButton();
+        btnNonCombatti = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnCombatti = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(54, 201, 75, 23);
+        btnInventario.setText("Inventario");
+        btnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnInventario);
+        btnInventario.setBounds(15, 240, 90, 23);
 
-        jButton2.setText("jButton2");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(290, 201, 75, 23);
+        btnEsplora.setText("Esplora");
+        btnEsplora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEsploraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEsplora);
+        btnEsplora.setBounds(145, 240, 90, 23);
 
-        jButton3.setText("jButton3");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(526, 201, 75, 23);
-
-        btnIndietroMapa.setText("Indietro");
-        getContentPane().add(btnIndietroMapa);
-        btnIndietroMapa.setBounds(155, 327, 72, 23);
-
-        btnAvantiMappa.setText("Avanti");
-        getContentPane().add(btnAvantiMappa);
-        btnAvantiMappa.setBounds(410, 327, 72, 23);
+        btnNonCombatti.setText("Rifiuta");
+        btnNonCombatti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNonCombattiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNonCombatti);
+        btnNonCombatti.setBounds(15, 300, 90, 23);
 
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 690, 410);
+        jLabel1.setBounds(0, 0, 310, 200);
+
+        btnCombatti.setText("Combatti");
+        btnCombatti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombattiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCombatti);
+        btnCombatti.setBounds(145, 300, 90, 23);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(320, 20, 360, 190);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNonCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNonCombattiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNonCombattiActionPerformed
+
+    private void btnCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombattiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCombattiActionPerformed
+
+    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInventarioActionPerformed
+
+    private void btnEsploraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsploraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEsploraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,11 +131,12 @@ public class schermataMondo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAvantiMappa;
-    private javax.swing.JButton btnIndietroMapa;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCombatti;
+    private javax.swing.JButton btnEsplora;
+    private javax.swing.JButton btnInventario;
+    private javax.swing.JButton btnNonCombatti;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
