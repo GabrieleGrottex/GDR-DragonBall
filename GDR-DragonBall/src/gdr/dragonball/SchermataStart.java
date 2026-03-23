@@ -35,11 +35,21 @@ public class SchermataStart extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnStart.setText("jButton1");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 2, 36)); // NOI18N
         jLabel1.setText("DRAGON BALL");
 
         btnIstruzioni.setText("jButton1");
+        btnIstruzioni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIstruzioniActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,6 +80,14 @@ public class SchermataStart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStartActionPerformed
+
+    private void btnIstruzioniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIstruzioniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIstruzioniActionPerformed
 
     /**
      * @param args the command line arguments
