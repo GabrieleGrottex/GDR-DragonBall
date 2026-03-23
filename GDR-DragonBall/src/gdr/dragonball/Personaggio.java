@@ -17,7 +17,6 @@ public class Personaggio {
         String scelta = nomeScelto.toLowerCase().trim().replace(" ", "_").replace("-", "_").replace(".", "");
 
         switch (scelta) {
-            // --- SAGA GOKU & VEGETA ---
             case "goku_ragazzo":
                 this.setStatistiche("Goku (Ragazzo)", 150, 50, 25, 30, "Kamehameha"); break;
             case "goku_adulto":
@@ -35,7 +34,6 @@ public class Personaggio {
             case "vegeta_ultra_ego":
                 this.setStatistiche("Vegeta Ultra Ego", 500, 450, 110, 60, "Hakai"); break;
 
-            // --- GOHAN & TRUNKS ---
             case "gohan_bambino":
                 this.setStatistiche("Gohan (Bambino)", 120, 150, 25, 15, "Masenko"); break;
             case "gohan_ragazzo":
@@ -51,7 +49,6 @@ public class Personaggio {
             case "xeno_trunks":
                 this.setStatistiche("Xeno Trunks", 300, 300, 75, 50, "Key Sword Slash"); break;
 
-            // --- FUSIONI ---
             case "vegito":
                 this.setStatistiche("Vegito", 500, 400, 110, 80, "Final Kamehameha"); break;
             case "gogeta":
@@ -59,7 +56,6 @@ public class Personaggio {
             case "gotenks":
                 this.setStatistiche("Gotenks", 220, 250, 55, 25, "Super Ghost Kamikaze Attack"); break;
 
-            // --- NEMICI CLASSICI & FILM ---
             case "freezer":
                 this.setStatistiche("Freezer", 180, 150, 40, 25, "Death Beam"); break;
             case "cooler":
@@ -77,7 +73,6 @@ public class Personaggio {
             case "cell_max":
                 this.setStatistiche("Cell Max", 700, 100, 130, 10, "Explosive Scream"); break;
 
-            // --- DIVINITÀ & SUPER ---
             case "beerus":
                 this.setStatistiche("Beerus", 450, 600, 120, 80, "Sfera della Distruzione"); break;
             case "whis":
@@ -91,7 +86,6 @@ public class Personaggio {
             case "hit":
                 this.setStatistiche("Hit", 230, 350, 75, 40, "Salto Temporale"); break;
 
-            // --- TERRESTRI & DB CLASSICO ---
             case "crilin":
                 this.setStatistiche("Crilin", 130, 100, 25, 20, "Kienzan"); break;
             case "yamcha":
@@ -103,7 +97,6 @@ public class Personaggio {
             case "arale":
                 this.setStatistiche("Arale", 999, 999, 150, 150, "Cannone N'cha"); break;
 
-            // --- GT & SHENRON ---
             case "syn_shenron":
                 this.setStatistiche("Syn Shenron", 300, 250, 70, 40, "Dark Dragon Beam"); break;
             case "syn_shenron_omega":
@@ -111,7 +104,6 @@ public class Personaggio {
             case "uub":
                 this.setStatistiche("Uub", 200, 300, 55, 30, "Majuub Beam"); break;
 
-            // --- MANGA (MORO, GRANOLAH, GAS) ---
             case "moro":
                 this.setStatistiche("Moro", 400, 600, 85, 40, "Assorbimento Energetico"); break;
             case "granolah":

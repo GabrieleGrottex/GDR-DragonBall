@@ -22,6 +22,11 @@ public class Difficoltà {
                 this.moltiplicatoreDanno = 0.7; 
                 this.bonusHP = 0;
                 break;
+            case 2:
+                this.livello = "Normale";
+                this.moltiplicatoreDanno = 1.0;
+                this.bonusHP = 50;
+                break;
             case 3:
                 this.livello = "Difficile";
                 this.moltiplicatoreDanno = 1.3; 
@@ -32,12 +37,7 @@ public class Difficoltà {
                 this.moltiplicatoreDanno = 2.0; 
                 this.bonusHP = 300;
                 break;
-            case 2:
-            default:
-                this.livello = "Normale";
-                this.moltiplicatoreDanno = 1.0;
-                this.bonusHP = 50;
-                break;
+            
         }
     }
 

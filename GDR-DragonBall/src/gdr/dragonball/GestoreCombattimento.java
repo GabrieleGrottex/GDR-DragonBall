@@ -37,7 +37,7 @@ class GestoreCombattimento {
         preparaTurno(giocatore, mossaPlayer);
         preparaTurno(avversario, mossaIA);
 
-        System.out.println("\n--- RISULTATO TURNO ---");
+        System.out.println("\n RISULTATO TURNO");
         
         if (mossaPlayer == 1) {
             int danno = GestoreDanni.calcola(giocatore, avversario, mappa);
@@ -74,10 +74,9 @@ class GestoreCombattimento {
     public void mostraStato() {
         System.out.println(giocatore.p.nome + " HP: " + giocatore.hpAttuali + " | KI: " + giocatore.kiAttuale);
         System.out.println(avversario.p.nome + " HP: " + avversario.hpAttuali + " | KI: " + avversario.kiAttuale);
-        System.out.println("-----------------------");
     }
 
     public boolean scontroFinito() {
-        return !giocatore.isVivo() || !avversario.isVivo();
+        return !giocatore.seVivo() || !avversario.seVivo();
     }
 }

@@ -37,70 +37,48 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         btnIndietro = new javax.swing.JButton();
         btnAvanti = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jButton1.setText("jButton1");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(32, 133, 75, 23);
 
         jButton2.setText("jButton2");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(178, 133, 75, 23);
 
         jButton3.setText("jButton3");
+        getContentPane().add(jButton3);
+        jButton3.setBounds(339, 133, 75, 23);
 
         jButton4.setText("jButton4");
+        getContentPane().add(jButton4);
+        jButton4.setBounds(492, 133, 75, 23);
 
         jButton5.setText("jButton5");
+        getContentPane().add(jButton5);
+        jButton5.setBounds(644, 133, 75, 23);
 
         jButton6.setText("jButton6");
+        getContentPane().add(jButton6);
+        jButton6.setBounds(777, 133, 75, 23);
 
-        btnIndietro.setText("jButton7");
+        btnIndietro.setText("Indietro");
+        getContentPane().add(btnIndietro);
+        btnIndietro.setBounds(289, 245, 72, 23);
 
-        btnAvanti.setText("jButton8");
+        btnAvanti.setText("Avanti");
+        getContentPane().add(btnAvanti);
+        btnAvanti.setBounds(529, 245, 72, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton1)
-                        .addGap(71, 71, 71)
-                        .addComponent(jButton2)
-                        .addGap(86, 86, 86)
-                        .addComponent(jButton3)
-                        .addGap(78, 78, 78)
-                        .addComponent(jButton4)
-                        .addGap(77, 77, 77)
-                        .addComponent(jButton5)
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(289, 289, 289)
-                        .addComponent(btnIndietro)
-                        .addGap(165, 165, 165)
-                        .addComponent(btnAvanti)))
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIndietro)
-                    .addComponent(btnAvanti))
-                .addGap(32, 32, 32))
-        );
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 910, 300);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -139,6 +117,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

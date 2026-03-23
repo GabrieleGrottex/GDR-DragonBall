@@ -17,7 +17,7 @@ public class Mappa {
         String scelta = nomeScelta.toLowerCase().trim().replace(" ", "_");
 
         switch (scelta) {
-            // --- TERRA ---
+            
             case "monte_paozu":
                 setMappa("Monte Paozu", 1.0, "Nostalgia: Recupero KI leggermente aumentato."); break;
             case "west_city":
@@ -33,7 +33,6 @@ public class Mappa {
             case "villaggio_pinguino":
                 setMappa("Villaggio Pinguino", 2.0, "Gag: I danni sono casuali e imprevedibili!"); break;
 
-            // --- SPAZIO ---
             case "pianeta_vegeta":
                 setMappa("Pianeta Vegeta", 1.3, "Orgoglio Saiyan: L'attacco aumenta quando la vita è bassa."); break;
             case "pianeta_namecc":
@@ -43,7 +42,6 @@ public class Mappa {
             case "pianeta_sadala":
                 setMappa("Pianeta Sadala", 1.1, "Evoluzione: Bonus alla difesa per i Saiyan."); break;
 
-            // --- REGNO DIVINO E ALDILÀ ---
             case "inferno":
                 setMappa("Inferno", 1.2, "Tormento: Non è possibile recuperare HP."); break;
             case "pianeta_kaiohshin":
@@ -54,8 +52,6 @@ public class Mappa {
                 setMappa("Mondo del Vuoto (Torneo Potere)", 0.8, "Sopravvivenza: La difesa è fondamentale qui."); break;
             case "palazzo_zeno":
                 setMappa("Palazzo di Zeno", 3.0, "Capriccio del Re: Partita velocissima, danni triplicati."); break;
-
-            // --- DIMENSIONI E LINEE TEMPORALI ---
             case "futuro_trunks":
                 setMappa("Futuro di Trunks", 1.3, "Disperazione: Gli attacchi consumano più KI."); break;
             case "dimensione_chaos":
@@ -63,7 +59,6 @@ public class Mappa {
             case "regno_demoniaco":
                 setMappa("Regno Demoniaco", 1.2, "Oscurità: La Schivata è più difficile da eseguire."); break;
 
-            // --- FILM E SPECIAL ---
             case "nuovo_vegeta":
                 setMappa("Pianeta Nuovo Vegeta", 1.4, "Trappola: Ogni turno perdi un po' di HP."); break;
             case "laboratorio_willow":

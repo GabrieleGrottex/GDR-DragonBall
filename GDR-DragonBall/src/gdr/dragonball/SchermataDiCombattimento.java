@@ -8,14 +8,14 @@ package gdr.dragonball;
  *
  * @author grottelli.gabriele
  */
-public class SceltaMappa extends javax.swing.JFrame {
+public class SchermataDiCombattimento extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SceltaMappa.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SchermataDiCombattimento.class.getName());
 
     /**
-     * Creates new form SceltaMappa
+     * Creates new form SchermataDiGioco
      */
-    public SceltaMappa() {
+    public SchermataDiCombattimento() {
         initComponents();
     }
 
@@ -28,39 +28,49 @@ public class SceltaMappa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        btnIndietroMapa = new javax.swing.JButton();
-        btnAvantiMappa = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnAttacco = new javax.swing.JButton();
+        btnDifesa = new javax.swing.JButton();
+        btnCaricaKi = new javax.swing.JButton();
+        btnSchivata = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        btnMossaFinale = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(54, 201, 75, 23);
-
-        jButton2.setText("jButton2");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(290, 201, 75, 23);
-
-        jButton3.setText("jButton3");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(526, 201, 75, 23);
-
-        btnIndietroMapa.setText("Indietro");
-        getContentPane().add(btnIndietroMapa);
-        btnIndietroMapa.setBounds(155, 327, 72, 23);
-
-        btnAvantiMappa.setText("Avanti");
-        getContentPane().add(btnAvantiMappa);
-        btnAvantiMappa.setBounds(410, 327, 72, 23);
-
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 690, 410);
+        jLabel1.setBounds(60, 30, 180, 210);
+
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(480, 40, 250, 170);
+
+        btnAttacco.setText("Attacco");
+        getContentPane().add(btnAttacco);
+        btnAttacco.setBounds(40, 270, 72, 23);
+
+        btnDifesa.setText("Difesa");
+        getContentPane().add(btnDifesa);
+        btnDifesa.setBounds(180, 270, 72, 23);
+
+        btnCaricaKi.setText("CaricaKi");
+        getContentPane().add(btnCaricaKi);
+        btnCaricaKi.setBounds(40, 360, 73, 23);
+
+        btnSchivata.setText("Schivata");
+        getContentPane().add(btnSchivata);
+        btnSchivata.setBounds(180, 360, 74, 23);
+
+        jButton1.setText("MossaFinale");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(40, 430, 210, 23);
+
+        btnMossaFinale.setText("jLabel3");
+        getContentPane().add(btnMossaFinale);
+        btnMossaFinale.setBounds(0, 0, 810, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -87,15 +97,17 @@ public class SceltaMappa extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new SceltaMappa().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new SchermataDiCombattimento().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAvantiMappa;
-    private javax.swing.JButton btnIndietroMapa;
+    private javax.swing.JButton btnAttacco;
+    private javax.swing.JButton btnCaricaKi;
+    private javax.swing.JButton btnDifesa;
+    private javax.swing.JLabel btnMossaFinale;
+    private javax.swing.JButton btnSchivata;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

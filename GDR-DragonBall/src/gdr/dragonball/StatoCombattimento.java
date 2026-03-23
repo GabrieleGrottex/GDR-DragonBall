@@ -23,7 +23,7 @@ public class StatoCombattimento {
         this.staSchivando = false;
     }
 
-    public boolean isVivo() {
+    public boolean seVivo() {
         return hpAttuali > 0;
     }
 }
