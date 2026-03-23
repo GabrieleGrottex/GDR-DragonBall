@@ -8,14 +8,14 @@ package gdr.dragonball;
  *
  * @author grottelli.gabriele
  */
-public class SceltaMappa extends javax.swing.JFrame {
+public class schermataMondo extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SceltaMappa.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(schermataMondo.class.getName());
 
     /**
      * Creates new form SceltaMappa
      */
-    public SceltaMappa() {
+    public schermataMondo() {
         initComponents();
     }
 
@@ -87,7 +87,7 @@ public class SceltaMappa extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new SceltaMappa().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new schermataMondo().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
