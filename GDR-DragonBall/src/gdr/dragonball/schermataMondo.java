@@ -11,12 +11,18 @@ package gdr.dragonball;
 public class schermataMondo extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(schermataMondo.class.getName());
-
+    
+    private Inventario mioInventario = new Inventario();
+    
+    private boolean nemicoPresente = false;
+    
     /**
      * Creates new form SceltaMappa
      */
     public schermataMondo() {
         initComponents();
+        btnCombatti.setVisible(false);
+        btnNonCombatti.setVisible(false);
     }
 
     /**
@@ -98,11 +104,38 @@ public class schermataMondo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCombattiActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
-        // TODO add your handling code here:
+        jTextArea1.append("--- APERTURA ZAINO ---\n");
+        jTextArea1.append(mioInventario.mostraOggetti());
+        jTextArea1.append("-----------------------\n");
     }//GEN-LAST:event_btnInventarioActionPerformed
 
     private void btnEsploraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsploraActionPerformed
-        // TODO add your handling code here:
+        if (nemicoPresente) {
+            jTextArea1.append("C'è un nemico davanti a te! Devi decidere se combattere o rifiutare.\n");
+            return;
+        }
+
+        double chance = Math.random();
+    
+        if (chance < 0.3) {
+            String[] possibiliOggetti = {"Senzu", "Capsula Hoi-Poi", "Sfera del Drago (4 stelle)", "Tuta da combattimento"};
+            String trovato = possibiliOggetti[(int)(Math.random() * possibiliOggetti.length)];
+        
+            mioInventario.aggiungiOggetto(trovato);
+            jTextArea1.append("Hai trovato: " + trovato + "! Salvato nell'inventario.\n");
+        
+        } else if (chance < 0.7) {
+            jTextArea1.append("ATTENZIONE! Un nemico ti sfida. Vuoi combattere?\n");
+            nemicoPresente = true;
+            btnCombatti.setEnabled(true);
+            btnNonCombatti.setEnabled(true);
+            btnCombatti.setVisible(true);
+            btnNonCombatti.setVisible(true);
+            btnEsplora.setEnabled(false); 
+        
+        } else {
+            jTextArea1.append("Hai camminato a lungo, ma non hai trovato nulla.\n");
+        }
     }//GEN-LAST:event_btnEsploraActionPerformed
 
     /**
