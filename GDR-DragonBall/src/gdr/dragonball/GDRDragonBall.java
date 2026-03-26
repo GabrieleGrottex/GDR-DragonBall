@@ -4,8 +4,6 @@
  */
 package gdr.dragonball;
 
-import java.util.Scanner;
-
 /**
  *
  * @author grottelli.gabriele
@@ -17,11 +15,9 @@ public class GDRDragonBall {
      */
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-            SchermataStart start = new SchermataStart();
-            start.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); 
-            start.setVisible(true);
-        });
-    }
+        new SchermataStart().setVisible(true);
+    });
+}
 }
     
 

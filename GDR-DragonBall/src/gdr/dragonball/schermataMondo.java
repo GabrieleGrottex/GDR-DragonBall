@@ -4,6 +4,7 @@
  */
 package gdr.dragonball;
 
+import javax.swing.*;
 /**
  *
  * @author grottelli.gabriele
@@ -11,29 +12,21 @@ package gdr.dragonball;
 public class schermataMondo extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(schermataMondo.class.getName());
-    
     private Personaggio eroe;
-    
-    public schermataMondo(Personaggio p) {
-        initComponents();
-        this.eroe = p; 
-        System.out.println("Il mondo è stato caricato con: " + eroe.nome);
-        this.setUndecorated(true); 
-        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        this.setLocationRelativeTo(null); 
-    }
-    
     private Inventario mioInventario = new Inventario();
-    
     private boolean nemicoPresente = false;
-    
-    /**
-     * Creates new form SceltaMappa
-     */
-    public schermataMondo() {
+
+    public schermataMondo(Personaggio p) {
+        this.eroe = p;
         initComponents();
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+        setVisible(true);
+
         btnCombatti.setVisible(false);
         btnNonCombatti.setVisible(false);
+
+        
     }
 
     /**
@@ -107,11 +100,19 @@ public class schermataMondo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNonCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNonCombattiActionPerformed
-        // TODO add your handling code here:
+        jTextArea1.append("Hai deciso di non combattere.\n");
+        nemicoPresente = false;
+        btnCombatti.setVisible(false);
+        btnNonCombatti.setVisible(false);
+        btnEsplora.setEnabled(true);
     }//GEN-LAST:event_btnNonCombattiActionPerformed
 
     private void btnCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombattiActionPerformed
-        // TODO add your handling code here:
+        jTextArea1.append("Combatti con il nemico!\n");
+        nemicoPresente = false;
+        btnCombatti.setVisible(false);
+        btnNonCombatti.setVisible(false);
+        btnEsplora.setEnabled(true);
     }//GEN-LAST:event_btnCombattiActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed

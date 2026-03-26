@@ -17,6 +17,9 @@ public class SchermataStart extends javax.swing.JFrame {
      */
     public SchermataStart() {
         initComponents();
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+        setVisible(true);
         this.setUndecorated(true); 
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null); 

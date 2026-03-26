@@ -11,16 +11,20 @@ package gdr.dragonball;
 public class SchermataDiCombattimento extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SchermataDiCombattimento.class.getName());
+    private GestoreCombattimento combattimento;
 
-    /**
-     * Creates new form SchermataDiGioco
-     */
-    public SchermataDiCombattimento() {
+    public SchermataDiCombattimento(Personaggio giocatore, Personaggio nemico, Mappa mappa, Difficoltà difficolta) {
         initComponents();
-        this.setUndecorated(true); 
-        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        this.setLocationRelativeTo(null); 
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+
+        combattimento = new GestoreCombattimento(giocatore, nemico, mappa, difficolta);
+
+        jTextArea1.append("Inizio combattimento tra " + giocatore.nome + " e " + nemico.nome + "!\n");
+        setVisible(true);
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.

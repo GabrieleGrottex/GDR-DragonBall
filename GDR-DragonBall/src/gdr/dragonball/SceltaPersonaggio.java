@@ -4,76 +4,90 @@
  */
 package gdr.dragonball;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  *
  * @author grottelli.gabriele
  */
-public class SceltaPersonaggio extends javax.swing.JFrame {
-    private Personaggio personaggioSelezionato = null;
+
+public class SceltaPersonaggio extends javax.swing.JFrame { 
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SceltaPersonaggio.class.getName());
+    private JButton[] bottoniPersonaggi; // bottoni personaggi
+    private JButton btnAvvia;            // bottone per aprire il mondo
+    private Personaggio personaggioSelezionato; // personaggio scelto
+    
     private String[] tuttiNomi = {
-    "goku_ragazzo", "goku_adulto", "goku_gt", "goku_ultra_istinto", 
-        
-    "vegeta_scouter", "vegeta_majin", "baby_vegeta", "vegeta_ultra_ego",
-    
-    "gohan_bambino", "gohan_ragazzo", "gohan_mystic", "gohan_beast",
-    
-    "trunks_futuro", "trunks_bambino", "xeno_trunks",
-    
-    "vegito", "gogeta", "gotenks",
-    
-    "freezer", "cooler", "metal_cooler", "broly_anni_90", 
-    
-    "broly_super_saiyan_della_leggenda", "janemba", "hildegarn", "cell_max",
-    
-    "beerus", "whis", "jiren", "goku_black", "zamasu", "hit",
-    
-    "crilin", "yamcha", "tenshinhan", "maestro_muten", "arale",
-    
-    "syn_shenron", "syn_shenron_omega", "uub",
-    
-    "moro", "granolah", "gas"
+        "goku_ragazzo", "goku_adulto", "goku_gt", "goku_ultra_istinto", 
+        "vegeta_scouter", "vegeta_majin", "baby_vegeta", "vegeta_ultra_ego",
+        "gohan_bambino", "gohan_ragazzo", "gohan_mystic", "gohan_beast",
+        "trunks_futuro", "trunks_bambino", "xeno_trunks",
+        "vegito", "gogeta", "gotenks",
+        "freezer", "cooler", "metal_cooler", "broly_anni_90", 
+        "broly_super_saiyan_della_leggenda", "janemba", "hildegarn", "cell_max",
+        "beerus", "whis", "jiren", "goku_black", "zamasu", "hit",
+        "crilin", "yamcha", "tenshinhan", "maestro_muten", "arale",
+        "syn_shenron", "syn_shenron_omega", "uub",
+        "moro", "granolah", "gas"
     };
 
     private int indicePagina = 0; 
-    private int BOTTONI_PER_PAGINA = 7;
-    private javax.swing.JButton[] bottoniPersonaggi;
-    /**
-     * Creates new form SceltaPersonaggio
-     */
+    private int BOTTONI_PER_PAGINA = 6;
+
     public SceltaPersonaggio() {
         initComponents();
-        bottoniPersonaggi = new javax.swing.JButton[]{jButton1, jButton2, jButton3, jButton4, jButton5, jButton6};
-        btnAvanti.setVisible(false); 
-        aggiornaBottoni();
-        this.setUndecorated(true); 
-        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        this.setLocationRelativeTo(null); 
-    }
-    private void aggiornaBottoni() {
-    for (int i = 0; i < BOTTONI_PER_PAGINA; i++) {
-        int indiceReale = indicePagina + i;
+        setSize(900, 400);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        
+        bottoniPersonaggi = new JButton[]{jButton1, jButton2, jButton3, jButton4, jButton5, jButton6};
+        
+        btnAvvia.setVisible(false);
 
-        if (indiceReale < tuttiNomi.length) {
-            String nomeID = tuttiNomi[indiceReale];
-            bottoniPersonaggi[i].setText(nomeID.replace("_", " ")); 
-            bottoniPersonaggi[i].setVisible(true);
+        for (JButton btn : bottoniPersonaggi) {
+            btn.addActionListener(e -> {
+                JButton source = (JButton) e.getSource();
+                selezionaPersonaggio(source.getText().replace(" ", "_"));
+            });
+        }
+
+        aggiornaBottoni();
+    }
+
+    private void aggiornaBottoni() {
+        for (int i = 0; i < BOTTONI_PER_PAGINA; i++) {
+            int indiceReale = indicePagina + i;
+
+            if (indiceReale < tuttiNomi.length) {
+                String nomeID = tuttiNomi[indiceReale];
+                bottoniPersonaggi[i].setText(nomeID.replace("_", " "));
+                bottoniPersonaggi[i].setVisible(true);
+            } else {
+                bottoniPersonaggi[i].setVisible(false);
+            }
+        }   
+
+        btnIndietro.setEnabled(indicePagina > 0);
+        btnAvanti.setEnabled(indicePagina + BOTTONI_PER_PAGINA < tuttiNomi.length);
+    }
+
+    private void selezionaPersonaggio(String nomePersonaggio) {
+        personaggioSelezionato = new Personaggio(nomePersonaggio);
+        btnAvvia.setText("Avvia con " + nomePersonaggio.replace("_", " "));
+        btnAvvia.setVisible(true);
+        System.out.println("Hai selezionato: " + nomePersonaggio);
+    }
+
+    private void avviaGioco() {
+        if (personaggioSelezionato != null) {
+            schermataMondo mondo = new schermataMondo(personaggioSelezionato);
+            mondo.setVisible(true);
+            this.dispose();
         } else {
-            bottoniPersonaggi[i].setVisible(false);
+            JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima di continuare!");
         }
     }
-    
-    btnIndietro.setEnabled(indicePagina > 0);
-    btnAvanti.setEnabled(indicePagina + BOTTONI_PER_PAGINA < tuttiNomi.length);
-}
-    private void selezionaPersonaggio(String nomeID) {
-        
-        personaggioSelezionato = new Personaggio(nomeID);
-        btnAvanti.setText("Avvia con " + personaggioSelezionato.nome);
-        btnAvanti.setVisible(true); 
-        System.out.println("Hai selezionato: " + personaggioSelezionato.nome);
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -169,11 +183,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIndietroActionPerformed
 
     private void btnAvviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvviaActionPerformed
-        if (personaggioSelezionato != null) {
-        schermataMondo mondo = new schermataMondo(personaggioSelezionato);
-        mondo.setVisible(true);
-        this.dispose(); 
-    }
+        avviaGioco();
     }//GEN-LAST:event_btnAvviaActionPerformed
 
     /**
