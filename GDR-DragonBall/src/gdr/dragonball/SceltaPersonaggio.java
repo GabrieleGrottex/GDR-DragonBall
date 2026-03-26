@@ -11,13 +11,55 @@ package gdr.dragonball;
 public class SceltaPersonaggio extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SceltaPersonaggio.class.getName());
+    private String[] tuttiNomi = {
+    "goku_ragazzo", "goku_adulto", "goku_gt", "goku_ultra_istinto", 
+        
+    "vegeta_scouter", "vegeta_majin", "baby_vegeta", "vegeta_ultra_ego",
+    
+    "gohan_bambino", "gohan_ragazzo", "gohan_mystic", "gohan_beast",
+    
+    "trunks_futuro", "trunks_bambino", "xeno_trunks",
+    
+    "vegito", "gogeta", "gotenks",
+    
+    "freezer", "cooler", "metal_cooler", "broly_anni_90", 
+    
+    "broly_super_saiyan_della_leggenda", "janemba", "hildegarn", "cell_max",
+    
+    "beerus", "whis", "jiren", "goku_black", "zamasu", "hit",
+    
+    "crilin", "yamcha", "tenshinhan", "maestro_muten", "arale",
+    
+    "syn_shenron", "syn_shenron_omega", "uub",
+    
+    "moro", "granolah", "gas"
+    };
 
+    private int indicePagina = 0; 
+    private int BOTTONI_PER_PAGINA = 7;
+    private javax.swing.JButton[] bottoniPersonaggi;
     /**
      * Creates new form SceltaPersonaggio
      */
     public SceltaPersonaggio() {
         initComponents();
     }
+    private void aggiornaBottoni() {
+    for (int i = 0; i < BOTTONI_PER_PAGINA; i++) {
+        int indiceReale = indicePagina + i;
+
+        if (indiceReale < tuttiNomi.length) {
+            String nomeID = tuttiNomi[indiceReale];
+            bottoniPersonaggi[i].setText(nomeID.replace("_", " ")); 
+            bottoniPersonaggi[i].setVisible(true);
+        } else {
+            bottoniPersonaggi[i].setVisible(false);
+        }
+    }
+    
+    btnIndietro.setEnabled(indicePagina > 0);
+    btnAvanti.setEnabled(indicePagina + BOTTONI_PER_PAGINA < tuttiNomi.length);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,10 +111,20 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         jButton6.setBounds(777, 133, 75, 23);
 
         btnIndietro.setText("Indietro");
+        btnIndietro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIndietroActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnIndietro);
         btnIndietro.setBounds(289, 245, 72, 23);
 
         btnAvanti.setText("Avanti");
+        btnAvanti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvantiActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAvanti);
         btnAvanti.setBounds(529, 245, 72, 23);
 
@@ -82,6 +134,17 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAvantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvantiActionPerformed
+        indicePagina += BOTTONI_PER_PAGINA;
+        aggiornaBottoni();
+    }//GEN-LAST:event_btnAvantiActionPerformed
+
+    private void btnIndietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndietroActionPerformed
+        indicePagina -= BOTTONI_PER_PAGINA;
+        if (indicePagina < 0) indicePagina = 0;
+        aggiornaBottoni();
+    }//GEN-LAST:event_btnIndietroActionPerformed
 
     /**
      * @param args the command line arguments
