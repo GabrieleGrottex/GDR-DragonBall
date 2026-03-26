@@ -9,6 +9,7 @@ package gdr.dragonball;
  * @author grottelli.gabriele
  */
 public class SceltaPersonaggio extends javax.swing.JFrame {
+    private Personaggio personaggioSelezionato = null;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SceltaPersonaggio.class.getName());
     private String[] tuttiNomi = {
@@ -43,6 +44,12 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
      */
     public SceltaPersonaggio() {
         initComponents();
+        bottoniPersonaggi = new javax.swing.JButton[]{jButton1, jButton2, jButton3, jButton4, jButton5, jButton6};
+        btnAvanti.setVisible(false); 
+        aggiornaBottoni();
+        this.setUndecorated(true); 
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null); 
     }
     private void aggiornaBottoni() {
     for (int i = 0; i < BOTTONI_PER_PAGINA; i++) {
@@ -60,6 +67,13 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     btnIndietro.setEnabled(indicePagina > 0);
     btnAvanti.setEnabled(indicePagina + BOTTONI_PER_PAGINA < tuttiNomi.length);
 }
+    private void selezionaPersonaggio(String nomeID) {
+        
+        personaggioSelezionato = new Personaggio(nomeID);
+        btnAvanti.setText("Avvia con " + personaggioSelezionato.nome);
+        btnAvanti.setVisible(true); 
+        System.out.println("Hai selezionato: " + personaggioSelezionato.nome);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,6 +85,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     private void initComponents() {
 
         jToggleButton1 = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -79,9 +94,11 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         btnIndietro = new javax.swing.JButton();
         btnAvanti = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnAvvia = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -126,11 +143,16 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAvanti);
-        btnAvanti.setBounds(529, 245, 72, 23);
+        btnAvanti.setBounds(530, 250, 72, 23);
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 910, 300);
+        btnAvvia.setText("Avvia");
+        btnAvvia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvviaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAvvia);
+        btnAvvia.setBounds(750, 250, 72, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,6 +167,14 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         if (indicePagina < 0) indicePagina = 0;
         aggiornaBottoni();
     }//GEN-LAST:event_btnIndietroActionPerformed
+
+    private void btnAvviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvviaActionPerformed
+        if (personaggioSelezionato != null) {
+        schermataMondo mondo = new schermataMondo(personaggioSelezionato);
+        mondo.setVisible(true);
+        this.dispose(); 
+    }
+    }//GEN-LAST:event_btnAvviaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +203,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvanti;
+    private javax.swing.JButton btnAvvia;
     private javax.swing.JButton btnIndietro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -17,6 +17,9 @@ public class SchermataDiCombattimento extends javax.swing.JFrame {
      */
     public SchermataDiCombattimento() {
         initComponents();
+        this.setUndecorated(true); 
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null); 
     }
 
     /**

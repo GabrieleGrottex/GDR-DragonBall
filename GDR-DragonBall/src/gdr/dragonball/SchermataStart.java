@@ -17,6 +17,9 @@ public class SchermataStart extends javax.swing.JFrame {
      */
     public SchermataStart() {
         initComponents();
+        this.setUndecorated(true); 
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null); 
     }
 
     /**
@@ -82,7 +85,9 @@ public class SchermataStart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        // TODO add your handling code here:
+        SceltaPersonaggio scelta = new SceltaPersonaggio();
+        scelta.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnIstruzioniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIstruzioniActionPerformed

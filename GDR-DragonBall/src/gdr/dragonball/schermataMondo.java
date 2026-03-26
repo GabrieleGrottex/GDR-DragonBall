@@ -12,6 +12,17 @@ public class schermataMondo extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(schermataMondo.class.getName());
     
+    private Personaggio eroe;
+    
+    public schermataMondo(Personaggio p) {
+        initComponents();
+        this.eroe = p; 
+        System.out.println("Il mondo è stato caricato con: " + eroe.nome);
+        this.setUndecorated(true); 
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null); 
+    }
+    
     private Inventario mioInventario = new Inventario();
     
     private boolean nemicoPresente = false;
