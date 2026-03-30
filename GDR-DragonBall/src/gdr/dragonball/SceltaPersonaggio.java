@@ -49,7 +49,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
 
         aggiornaBottoni();
         
-        setSize(900, 400);
+        setSize(1000, 400);
         setLocationRelativeTo(null);
     }
 
@@ -83,15 +83,33 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     }
 
     private void avviaGioco() {
-        if (personaggioSelezionato != null) {
-            schermataMondo mondo = new schermataMondo(personaggioSelezionato);
-            mondo.setVisible(true);
-            
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima di continuare!");
-        }
+    if (personaggioSelezionato != null) {
+
+        int indiceRandomNemico = (int) (Math.random() * tuttiNomi.length);
+        String nomeNemicoCasuale = tuttiNomi[indiceRandomNemico];
+        Personaggio nemico = new Personaggio(nomeNemicoCasuale);
+
+        String[] mappeDisponibili = {"Pianeta Namecc", "Torneo Tenkaichi", "Stanza dello Spirito e del Tempo", "Città dell'Ovest"};
+        int indiceMappa = (int) (Math.random() * mappeDisponibili.length);
+        Mappa mappaCasuale = new Mappa(mappeDisponibili[indiceMappa]);
+
+        Difficoltà[] diffs = Difficoltà.values();
+        Difficoltà difficoltaCasuale = diffs[(int) (Math.random() * diffs.length)];
+
+        SchermataDiCombattimento combat = new SchermataDiCombattimento(
+            personaggioSelezionato, 
+            nemico, 
+            mappaCasuale, 
+            difficoltaCasuale
+        );
+        
+        combat.setVisible(true);
+        this.dispose();
+        
+    } else {
+        JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima di continuare!");
     }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,27 +141,27 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
         getContentPane().add(jButton1);
-        jButton1.setBounds(32, 133, 75, 23);
+        jButton1.setBounds(20, 140, 130, 23);
 
         jButton2.setText("jButton2");
         getContentPane().add(jButton2);
-        jButton2.setBounds(178, 133, 75, 23);
+        jButton2.setBounds(170, 140, 140, 23);
 
         jButton3.setText("jButton3");
         getContentPane().add(jButton3);
-        jButton3.setBounds(339, 133, 75, 23);
+        jButton3.setBounds(340, 140, 130, 23);
 
         jButton4.setText("jButton4");
         getContentPane().add(jButton4);
-        jButton4.setBounds(492, 133, 75, 23);
+        jButton4.setBounds(500, 140, 150, 23);
 
         jButton5.setText("jButton5");
         getContentPane().add(jButton5);
-        jButton5.setBounds(644, 133, 75, 23);
+        jButton5.setBounds(700, 140, 150, 23);
 
         jButton6.setText("jButton6");
         getContentPane().add(jButton6);
-        jButton6.setBounds(777, 133, 75, 23);
+        jButton6.setBounds(890, 140, 150, 23);
 
         btnIndietro.setText("Indietro");
         btnIndietro.addActionListener(new java.awt.event.ActionListener() {

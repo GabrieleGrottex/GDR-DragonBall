@@ -15,6 +15,7 @@ public class schermataMondo extends javax.swing.JFrame {
     private Personaggio eroe;
     private Inventario mioInventario = new Inventario();
     private boolean nemicoPresente = false;
+    SchermataDiCombattimento f = new SchermataDiCombattimento();
 
     public schermataMondo(Personaggio p) {
         this.eroe = p;
@@ -111,6 +112,7 @@ public class schermataMondo extends javax.swing.JFrame {
         btnCombatti.setVisible(false);
         btnNonCombatti.setVisible(false);
         btnEsplora.setEnabled(true);
+        f.setVisible(true);
     }//GEN-LAST:event_btnCombattiActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed

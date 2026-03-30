@@ -13,15 +13,10 @@ public class SchermataDiCombattimento extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SchermataDiCombattimento.class.getName());
     private GestoreCombattimento combattimento;
 
-    public SchermataDiCombattimento(Personaggio giocatore, Personaggio nemico, Mappa mappa, Difficoltà difficolta) {
+    public SchermataDiCombattimento() {
         initComponents();
-        setSize(800, 600);
+        setSize(900, 600);
         setLocationRelativeTo(null);
-
-        combattimento = new GestoreCombattimento(giocatore, nemico, mappa, difficolta);
-
-        jTextArea1.append("Inizio combattimento tra " + giocatore.nome + " e " + nemico.nome + "!\n");
-        setVisible(true);
     }
     
    
