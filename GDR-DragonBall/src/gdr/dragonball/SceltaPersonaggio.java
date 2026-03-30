@@ -6,7 +6,6 @@ package gdr.dragonball;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 /**
  *
  * @author grottelli.gabriele
@@ -14,9 +13,9 @@ import java.awt.event.ActionListener;
 
 public class SceltaPersonaggio extends javax.swing.JFrame { 
     
-    private JButton[] bottoniPersonaggi; // bottoni personaggi
-    private JButton btnAvvia;            // bottone per aprire il mondo
-    private Personaggio personaggioSelezionato; // personaggio scelto
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SceltaPersonaggio.class.getName());
+    private JButton[] bottoniPersonaggi; 
+    private Personaggio personaggioSelezionato; 
     
     private String[] tuttiNomi = {
         "goku_ragazzo", "goku_adulto", "goku_gt", "goku_ultra_istinto", 
@@ -33,13 +32,10 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     };
 
     private int indicePagina = 0; 
-    private int BOTTONI_PER_PAGINA = 6;
+    private final int BOTTONI_PER_PAGINA = 6;
 
     public SceltaPersonaggio() {
-        initComponents();
-        setSize(900, 400);
-        setLocationRelativeTo(null);
-        setVisible(true);
+        initComponents(); 
         
         bottoniPersonaggi = new JButton[]{jButton1, jButton2, jButton3, jButton4, jButton5, jButton6};
         
@@ -47,12 +43,14 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
 
         for (JButton btn : bottoniPersonaggi) {
             btn.addActionListener(e -> {
-                JButton source = (JButton) e.getSource();
-                selezionaPersonaggio(source.getText().replace(" ", "_"));
+                selezionaPersonaggio(btn.getText());
             });
         }
 
         aggiornaBottoni();
+        
+        setSize(900, 400);
+        setLocationRelativeTo(null);
     }
 
     private void aggiornaBottoni() {
@@ -61,6 +59,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
 
             if (indiceReale < tuttiNomi.length) {
                 String nomeID = tuttiNomi[indiceReale];
+                
                 bottoniPersonaggi[i].setText(nomeID.replace("_", " "));
                 bottoniPersonaggi[i].setVisible(true);
             } else {
@@ -72,17 +71,22 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         btnAvanti.setEnabled(indicePagina + BOTTONI_PER_PAGINA < tuttiNomi.length);
     }
 
-    private void selezionaPersonaggio(String nomePersonaggio) {
-        personaggioSelezionato = new Personaggio(nomePersonaggio);
-        btnAvvia.setText("Avvia con " + nomePersonaggio.replace("_", " "));
+    private void selezionaPersonaggio(String nomeVisibile) {
+        String nomeID = nomeVisibile.toLowerCase().replace(" ", "_");
+        
+        personaggioSelezionato = new Personaggio(nomeID);
+        
+        btnAvvia.setText("Avvia con " + nomeVisibile);
         btnAvvia.setVisible(true);
-        System.out.println("Hai selezionato: " + nomePersonaggio);
+        
+        System.out.println("DEBUG: Selezionato " + nomeID);
     }
 
     private void avviaGioco() {
         if (personaggioSelezionato != null) {
             schermataMondo mondo = new schermataMondo(personaggioSelezionato);
             mondo.setVisible(true);
+            
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima di continuare!");

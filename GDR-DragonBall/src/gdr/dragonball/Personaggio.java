@@ -112,8 +112,7 @@ public class Personaggio {
                 this.setStatistiche("Gas", 420, 300, 95, 50, "Creazione Armi"); break;
         }
     }
-
-    // Metodo di supporto per non ripetere this.hp, this.ki ecc.
+    
     private void setStatistiche(String n, int h, int k, int a, int d, String ms) {
         this.nome = n;
         this.hp = h;
