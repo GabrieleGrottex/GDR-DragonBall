@@ -14,10 +14,10 @@ class GestoreCombattimento {
     private StatoCombattimento giocatore;
     private StatoCombattimento avversario;
     private Mappa mappa;
-    private Difficoltà difficolta; 
+    private Difficolta difficolta; 
     private Random rand = new Random();;
 
-    public GestoreCombattimento(Personaggio p1, Personaggio p2, Mappa m, Difficoltà d) {
+    public GestoreCombattimento(Personaggio p1, Personaggio p2, Mappa m, Difficolta d) {
         this.giocatore = new StatoCombattimento(p1);
         this.avversario = new StatoCombattimento(p2);
         this.difficolta = d; 

@@ -5,7 +5,7 @@
 package gdr.dragonball;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
+import java.util.Random;
 /**
  *
  * @author grottelli.gabriele
@@ -15,6 +15,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SceltaPersonaggio.class.getName());
     private JButton[] bottoniPersonaggi; 
+    private JLabel[] labelImmagini; 
     private Personaggio personaggioSelezionato; 
     
     private String[] tuttiNomi = {
@@ -38,6 +39,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         initComponents(); 
         
         bottoniPersonaggi = new JButton[]{jButton1, jButton2, jButton3, jButton4, jButton5, jButton6};
+        labelImmagini = new JLabel[]{jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel2};
         
         btnAvvia.setVisible(false);
 
@@ -52,18 +54,47 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         setSize(1000, 400);
         setLocationRelativeTo(null);
     }
+    private void impostaCella(int i, String nomeID) {
+        if (nomeID != null) {
+            bottoniPersonaggi[i].setText(nomeID.replace("_", " "));
+            bottoniPersonaggi[i].setVisible(true);
 
+            try {
+                String path = "/gdr/dragonball/immagini/" + nomeID + ".png";
+                java.net.URL imgURL = getClass().getResource(path);
+            
+                if (imgURL != null) {
+                    ImageIcon icon = new ImageIcon(imgURL);
+                    
+                    int w = labelImmagini[i].getWidth();
+                    int h = labelImmagini[i].getHeight();
+                    
+                    java.awt.Image img = icon.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH);
+                
+                    labelImmagini[i].setIcon(new ImageIcon(img));
+                    labelImmagini[i].setText(""); 
+                } else {
+                    labelImmagini[i].setIcon(null);
+                    labelImmagini[i].setText("No Img");
+                }
+            } catch (Exception e) {
+                labelImmagini[i].setIcon(null);
+            }
+            labelImmagini[i].setVisible(true);
+        } else {
+            bottoniPersonaggi[i].setVisible(false);
+            labelImmagini[i].setVisible(false);
+        }
+    }
+    
     private void aggiornaBottoni() {
         for (int i = 0; i < BOTTONI_PER_PAGINA; i++) {
             int indiceReale = indicePagina + i;
 
             if (indiceReale < tuttiNomi.length) {
-                String nomeID = tuttiNomi[indiceReale];
-                
-                bottoniPersonaggi[i].setText(nomeID.replace("_", " "));
-                bottoniPersonaggi[i].setVisible(true);
+                impostaCella(i, tuttiNomi[indiceReale]);
             } else {
-                bottoniPersonaggi[i].setVisible(false);
+                impostaCella(i, null);
             }
         }   
 
@@ -83,33 +114,29 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     }
 
     private void avviaGioco() {
-    if (personaggioSelezionato != null) {
+        if (personaggioSelezionato != null) {
 
-        int indiceRandomNemico = (int) (Math.random() * tuttiNomi.length);
-        String nomeNemicoCasuale = tuttiNomi[indiceRandomNemico];
-        Personaggio nemico = new Personaggio(nomeNemicoCasuale);
+            int indiceRandomNemico = (int) (Math.random() * tuttiNomi.length);
+            String nomeNemicoCasuale = tuttiNomi[indiceRandomNemico];
+            Personaggio nemico = new Personaggio(nomeNemicoCasuale);
 
-        String[] mappeDisponibili = {"Pianeta Namecc", "Torneo Tenkaichi", "Stanza dello Spirito e del Tempo", "Città dell'Ovest"};
-        int indiceMappa = (int) (Math.random() * mappeDisponibili.length);
-        Mappa mappaCasuale = new Mappa(mappeDisponibili[indiceMappa]);
+            String[] mappeDisponibili = {"Pianeta Namecc", "Torneo Tenkaichi", "Stanza dello Spirito e del Tempo", "Città dell'Ovest"};
+            int indiceMappa = (int) (Math.random() * mappeDisponibili.length);
+            Mappa mappaCasuale = new Mappa(mappeDisponibili[indiceMappa]);
 
-        Difficoltà[] diffs = Difficoltà.values();
-        Difficoltà difficoltaCasuale = diffs[(int) (Math.random() * diffs.length)];
+            Difficolta[] diffs = Difficolta.getTutteLeDifficolta(); 
 
-        SchermataDiCombattimento combat = new SchermataDiCombattimento(
-            personaggioSelezionato, 
-            nemico, 
-            mappaCasuale, 
-            difficoltaCasuale
-        );
+            Random rand = new Random();
+            Difficolta difficoltaCasuale = diffs[rand.nextInt(diffs.length)];
+
+            SchermataDiCombattimento combat = new SchermataDiCombattimento(personaggioSelezionato, nemico, mappaCasuale, difficoltaCasuale);
+            combat.setVisible(true);
+            this.dispose();
         
-        combat.setVisible(true);
-        this.dispose();
-        
-    } else {
-        JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima di continuare!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima di continuare!");
+        }
     }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -131,6 +158,12 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         btnIndietro = new javax.swing.JButton();
         btnAvanti = new javax.swing.JButton();
         btnAvvia = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -141,27 +174,27 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
         getContentPane().add(jButton1);
-        jButton1.setBounds(20, 140, 130, 23);
+        jButton1.setBounds(20, 170, 130, 23);
 
         jButton2.setText("jButton2");
         getContentPane().add(jButton2);
-        jButton2.setBounds(170, 140, 140, 23);
+        jButton2.setBounds(170, 170, 140, 23);
 
         jButton3.setText("jButton3");
         getContentPane().add(jButton3);
-        jButton3.setBounds(340, 140, 130, 23);
+        jButton3.setBounds(340, 170, 130, 23);
 
         jButton4.setText("jButton4");
         getContentPane().add(jButton4);
-        jButton4.setBounds(500, 140, 150, 23);
+        jButton4.setBounds(510, 170, 150, 23);
 
         jButton5.setText("jButton5");
         getContentPane().add(jButton5);
-        jButton5.setBounds(700, 140, 150, 23);
+        jButton5.setBounds(700, 170, 150, 23);
 
         jButton6.setText("jButton6");
         getContentPane().add(jButton6);
-        jButton6.setBounds(890, 140, 150, 23);
+        jButton6.setBounds(880, 170, 150, 23);
 
         btnIndietro.setText("Indietro");
         btnIndietro.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +222,30 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         });
         getContentPane().add(btnAvvia);
         btnAvvia.setBounds(750, 250, 72, 23);
+
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(880, 0, 130, 170);
+
+        jLabel3.setText("jLabel2");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(20, 0, 130, 170);
+
+        jLabel4.setText("jLabel2");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(170, 0, 130, 170);
+
+        jLabel5.setText("jLabel2");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(340, 0, 130, 170);
+
+        jLabel6.setText("jLabel2");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(510, 0, 130, 170);
+
+        jLabel7.setText("jLabel2");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(700, 0, 130, 170);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -244,6 +301,12 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

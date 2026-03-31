@@ -12,14 +12,24 @@ public class SchermataDiCombattimento extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SchermataDiCombattimento.class.getName());
     private GestoreCombattimento combattimento;
+    private Personaggio giocatore;
+    private Personaggio nemico;
+    private Mappa mappa;
+    private Difficolta difficolta; 
 
-    public SchermataDiCombattimento() {
-        initComponents();
+    public SchermataDiCombattimento(Personaggio giocatore, Personaggio nemico, Mappa mappa, Difficolta difficolta) {
+        this.giocatore = giocatore;
+        this.nemico = nemico;
+        this.mappa = mappa;
+        this.difficolta = difficolta;
+        
         setSize(900, 600);
         setLocationRelativeTo(null);
     }
     
-   
+    public SchermataDiCombattimento() {
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

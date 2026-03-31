@@ -9,13 +9,14 @@ import java.util.Random;
  *
  * @author grottelli.gabriele
  */
-public class Difficoltà {
+public class Difficolta{
+    
     public String livello;
     public double moltiplicatoreDanno;
     public int bonusHP;
     private Random rand = new Random();
 
-    public Difficoltà(int scelta) {
+    public Difficolta(int scelta) {
         switch (scelta) {
             case 1:
                 this.livello = "Facile";
@@ -37,8 +38,20 @@ public class Difficoltà {
                 this.moltiplicatoreDanno = 2.0; 
                 this.bonusHP = 300;
                 break;
-            
+            default:
+                this.livello = "Normale";
+                this.moltiplicatoreDanno = 1.0;
+                this.bonusHP = 50;
         }
+    }
+
+    public static Difficolta[] getTutteLeDifficolta() {
+        return new Difficolta[] {
+            new Difficolta(1),
+            new Difficolta(2),
+            new Difficolta(3),
+            new Difficolta(4)
+        };
     }
 
     public int decideMossa(int kiAttuale) {
