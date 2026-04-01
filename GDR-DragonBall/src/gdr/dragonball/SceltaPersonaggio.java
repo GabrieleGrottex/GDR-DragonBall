@@ -129,8 +129,8 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
             Random rand = new Random();
             Difficolta difficoltaCasuale = diffs[rand.nextInt(diffs.length)];
 
-            SchermataDiCombattimento combat = new SchermataDiCombattimento(personaggioSelezionato, nemico, mappaCasuale, difficoltaCasuale);
-            combat.setVisible(true);
+           schermataMondo mondo = new schermataMondo(personaggioSelezionato);
+            mondo.setVisible(true);
             this.dispose();
         
         } else {

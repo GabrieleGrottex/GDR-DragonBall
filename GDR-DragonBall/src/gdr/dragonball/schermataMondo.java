@@ -20,14 +20,19 @@ public class schermataMondo extends javax.swing.JFrame {
     public schermataMondo(Personaggio p) {
         this.eroe = p;
         initComponents();
-        setSize(800, 600);
-        setLocationRelativeTo(null);
-        setVisible(true);
-
+        
+        lblPersonaggio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gdr/dragonball/immagini/goku.png")));
+        lblPersonaggio.setText(""); 
+        
         btnCombatti.setVisible(false);
         btnNonCombatti.setVisible(false); 
+        
+        this.setSize(800, 600);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
-
+   
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +45,7 @@ public class schermataMondo extends javax.swing.JFrame {
         btnInventario = new javax.swing.JButton();
         btnEsplora = new javax.swing.JButton();
         btnNonCombatti = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblPersonaggio = new javax.swing.JLabel();
         btnCombatti = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -75,9 +80,9 @@ public class schermataMondo extends javax.swing.JFrame {
         getContentPane().add(btnNonCombatti);
         btnNonCombatti.setBounds(15, 300, 90, 23);
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 310, 200);
+        lblPersonaggio.setText("jLabel1");
+        getContentPane().add(lblPersonaggio);
+        lblPersonaggio.setBounds(0, 0, 310, 200);
 
         btnCombatti.setText("Combatti");
         btnCombatti.addActionListener(new java.awt.event.ActionListener() {
@@ -155,8 +160,8 @@ public class schermataMondo extends javax.swing.JFrame {
     private javax.swing.JButton btnEsplora;
     private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnNonCombatti;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblPersonaggio;
     // End of variables declaration//GEN-END:variables
 }
