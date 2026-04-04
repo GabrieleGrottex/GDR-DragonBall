@@ -15,21 +15,40 @@ public class schermataMondo extends javax.swing.JFrame {
     private Personaggio eroe;
     private Inventario mioInventario = new Inventario();
     private boolean nemicoPresente = false;
-    SchermataDiCombattimento f = new SchermataDiCombattimento();
 
     public schermataMondo(Personaggio p) {
         this.eroe = p;
         initComponents();
-        
-        lblPersonaggio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gdr/dragonball/immagini/goku.png")));
-        lblPersonaggio.setText(""); 
-        
+
+        caricaImmaginePersonaggio();
+
         btnCombatti.setVisible(false);
-        btnNonCombatti.setVisible(false); 
-        
-        this.setSize(800, 600);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        btnNonCombatti.setVisible(false);
+
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+    }
+
+    private void caricaImmaginePersonaggio() {
+        String nomeFile = eroe.nome.toLowerCase().replace(" ", "_").replace("(", "").replace(")", "");
+
+        String path = "/gdr/dragonball/immagini/" + nomeFile + ".png";
+
+        java.net.URL imgURL = getClass().getResource(path);
+
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+
+            int w = lblPersonaggio.getWidth();
+            int h = lblPersonaggio.getHeight();
+
+            java.awt.Image img = icon.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH);
+
+            lblPersonaggio.setIcon(new ImageIcon(img));
+            lblPersonaggio.setText("");
+        } else {
+            lblPersonaggio.setText("Immagine non trovata");
+        }
     }
    
     
@@ -60,7 +79,7 @@ public class schermataMondo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnInventario);
-        btnInventario.setBounds(15, 240, 90, 23);
+        btnInventario.setBounds(20, 340, 90, 23);
 
         btnEsplora.setText("Esplora");
         btnEsplora.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +88,7 @@ public class schermataMondo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEsplora);
-        btnEsplora.setBounds(145, 240, 90, 23);
+        btnEsplora.setBounds(160, 340, 90, 23);
 
         btnNonCombatti.setText("Rifiuta");
         btnNonCombatti.addActionListener(new java.awt.event.ActionListener() {
@@ -78,11 +97,11 @@ public class schermataMondo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNonCombatti);
-        btnNonCombatti.setBounds(15, 300, 90, 23);
+        btnNonCombatti.setBounds(20, 410, 90, 23);
 
         lblPersonaggio.setText("jLabel1");
         getContentPane().add(lblPersonaggio);
-        lblPersonaggio.setBounds(0, 0, 310, 200);
+        lblPersonaggio.setBounds(0, 0, 310, 280);
 
         btnCombatti.setText("Combatti");
         btnCombatti.addActionListener(new java.awt.event.ActionListener() {
@@ -91,14 +110,14 @@ public class schermataMondo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCombatti);
-        btnCombatti.setBounds(145, 300, 90, 23);
+        btnCombatti.setBounds(160, 410, 90, 23);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(320, 20, 360, 190);
+        jScrollPane1.setBounds(320, 10, 360, 320);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -112,12 +131,12 @@ public class schermataMondo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNonCombattiActionPerformed
 
     private void btnCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombattiActionPerformed
-        jTextArea1.append("Combatti con il nemico!\n");
-        nemicoPresente = false;
-        btnCombatti.setVisible(false);
-        btnNonCombatti.setVisible(false);
-        btnEsplora.setEnabled(true);
+        jTextArea1.append("Combatti!\n");
+        Personaggio nemico = new Personaggio("goku_ragazzo");
+        Mappa mappa = new Mappa("monte_paozu");
+        SchermataDiCombattimento f = new SchermataDiCombattimento(eroe, nemico, mappa);
         f.setVisible(true);
+        this.dispose();    
     }//GEN-LAST:event_btnCombattiActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed

@@ -4,33 +4,98 @@
  */
 package gdr.dragonball;
 
+import javax.swing.*;
+
 /**
  *
  * @author grottelli.gabriele
  */
-public class SchermataDiCombattimento extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SchermataDiCombattimento.class.getName());
+public class SchermataDiCombattimento extends JFrame {
+
+    private static final java.util.logging.Logger logger =
+            java.util.logging.Logger.getLogger(SchermataDiCombattimento.class.getName());
+
     private GestoreCombattimento combattimento;
     private Personaggio giocatore;
     private Personaggio nemico;
     private Mappa mappa;
-    private Difficolta difficolta; 
+    private StatoCombattimento player;
+    private StatoCombattimento enemy;
 
-    public SchermataDiCombattimento(Personaggio giocatore, Personaggio nemico, Mappa mappa, Difficolta difficolta) {
+    public SchermataDiCombattimento(Personaggio giocatore, Personaggio nemico, Mappa mappa) {
         this.giocatore = giocatore;
         this.nemico = nemico;
         this.mappa = mappa;
-        this.difficolta = difficolta;
-        
+
+        initComponents();
+
         setSize(900, 600);
         setLocationRelativeTo(null);
+
+        player = new StatoCombattimento(giocatore);
+        enemy = new StatoCombattimento(nemico);
+
+        SwingUtilities.invokeLater(() -> {
+            caricaImmagine(jLabel1, giocatore);
+            caricaImmagine(jLabel2, nemico);
+            caricaSfondo();
+        });
     }
-    
+
     public SchermataDiCombattimento() {
         initComponents();
     }
 
+    private void caricaImmagine(JLabel label, Personaggio p) {
+        String nomeFile = p.nome.toLowerCase().replace(" ", "_").replace("(", "").replace(")", "");
+        String path = "/gdr/dragonball/immagini/" + nomeFile + ".png";
+        java.net.URL imgURL = getClass().getResource(path);
+
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+            int w = label.getWidth();
+            int h = label.getHeight();
+            java.awt.Image img = icon.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH);
+            label.setIcon(new ImageIcon(img));
+            label.setText("");
+        } else {
+            label.setText("No Img");
+        }
+    }
+
+    private void caricaSfondo() {
+        String path = "/gdr/dragonball/immagini/sfondo.png";
+        java.net.URL imgURL = getClass().getResource(path);
+
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+            int w = btnMossaFinale.getWidth();
+            int h = btnMossaFinale.getHeight();
+            java.awt.Image img = icon.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH);
+            btnMossaFinale.setIcon(new ImageIcon(img));
+            btnMossaFinale.setText("");
+        }
+    }
+
+    private void turnoNemico() {
+        if (!enemy.seVivo()) {
+            jTextArea1.append("Hai vinto!\n");
+            return;
+        }
+
+        int danno = GestoreDanni.calcola(enemy, player, mappa);
+        player.hpAttuali -= danno;
+
+        jTextArea1.append("Il nemico ti fa " + danno + " danni!\n");
+
+        player.inDifesa = false;
+        player.staSchivando = false;
+
+        if (!player.seVivo()) {
+            jTextArea1.append("Sei stato sconfitto!\n");
+        }
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,19 +187,28 @@ public class SchermataDiCombattimento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAttaccoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttaccoActionPerformed
-        // TODO add your handling code here:
+        int danno = GestoreDanni.calcola(player, enemy, mappa);
+        enemy.hpAttuali -= danno;
+        jTextArea1.append("Hai fatto " + danno + " danni!\n");
+        turnoNemico();
     }//GEN-LAST:event_btnAttaccoActionPerformed
 
     private void btnDifesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDifesaActionPerformed
-        // TODO add your handling code here:
+        player.inDifesa = true;
+        jTextArea1.append("Ti metti in difesa!\n");
+        turnoNemico();
     }//GEN-LAST:event_btnDifesaActionPerformed
 
     private void btnCaricaKiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaKiActionPerformed
-        // TODO add your handling code here:
+        player.kiAttuale += 20;
+        jTextArea1.append("Carichi KI!\n");
+        turnoNemico();
     }//GEN-LAST:event_btnCaricaKiActionPerformed
 
     private void btnSchivataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSchivataActionPerformed
-        // TODO add your handling code here:
+        player.staSchivando = true;
+        jTextArea1.append("Provi a schivare!\n");
+        turnoNemico();
     }//GEN-LAST:event_btnSchivataActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

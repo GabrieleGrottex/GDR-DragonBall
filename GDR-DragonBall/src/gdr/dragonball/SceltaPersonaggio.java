@@ -116,25 +116,12 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     private void avviaGioco() {
         if (personaggioSelezionato != null) {
 
-            int indiceRandomNemico = (int) (Math.random() * tuttiNomi.length);
-            String nomeNemicoCasuale = tuttiNomi[indiceRandomNemico];
-            Personaggio nemico = new Personaggio(nomeNemicoCasuale);
-
-            String[] mappeDisponibili = {"Pianeta Namecc", "Torneo Tenkaichi", "Stanza dello Spirito e del Tempo", "Città dell'Ovest"};
-            int indiceMappa = (int) (Math.random() * mappeDisponibili.length);
-            Mappa mappaCasuale = new Mappa(mappeDisponibili[indiceMappa]);
-
-            Difficolta[] diffs = Difficolta.getTutteLeDifficolta(); 
-
-            Random rand = new Random();
-            Difficolta difficoltaCasuale = diffs[rand.nextInt(diffs.length)];
-
-           schermataMondo mondo = new schermataMondo(personaggioSelezionato);
+            schermataMondo mondo = new schermataMondo(personaggioSelezionato);
             mondo.setVisible(true);
             this.dispose();
-        
+
         } else {
-            JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima di continuare!");
+            JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima!");
         }
     }
 
