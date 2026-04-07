@@ -36,11 +36,12 @@ public class SchermataStart extends javax.swing.JFrame {
 
         btnStart = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnIstruzioni = new javax.swing.JButton();
+        btnCaricaPartita = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnStart.setText("jButton1");
+        btnStart.setFont(new java.awt.Font("Tempus Sans ITC", 3, 24)); // NOI18N
+        btnStart.setText("Inzia Il Gioco");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStartActionPerformed(evt);
@@ -50,10 +51,11 @@ public class SchermataStart extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 2, 36)); // NOI18N
         jLabel1.setText("DRAGON BALL");
 
-        btnIstruzioni.setText("jButton1");
-        btnIstruzioni.addActionListener(new java.awt.event.ActionListener() {
+        btnCaricaPartita.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
+        btnCaricaPartita.setText("Carica Partita");
+        btnCaricaPartita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIstruzioniActionPerformed(evt);
+                btnCaricaPartitaActionPerformed(evt);
             }
         });
 
@@ -62,26 +64,27 @@ public class SchermataStart extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(277, 277, 277)
-                .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(231, 231, 231)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                .addComponent(btnIstruzioni)
-                .addGap(26, 26, 26))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(231, 231, 231)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(291, 291, 291)
+                        .addComponent(btnCaricaPartita)))
+                .addGap(64, 243, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIstruzioni))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
                 .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(18, 18, 18)
+                .addComponent(btnCaricaPartita)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,9 +96,28 @@ public class SchermataStart extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnStartActionPerformed
 
-    private void btnIstruzioniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIstruzioniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIstruzioniActionPerformed
+    private void btnCaricaPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaPartitaActionPerformed
+        try {
+            java.io.FileInputStream fileIn = new java.io.FileInputStream("salvataggio.dat");
+            java.io.ObjectInputStream in = new java.io.ObjectInputStream(fileIn);
+        
+            Personaggio eroeCaricato = (Personaggio) in.readObject();
+            Inventario inventarioCaricato = (Inventario) in.readObject();
+        
+            in.close();
+            fileIn.close();
+        
+            schermataMondo mondo = new schermataMondo(eroeCaricato);
+        
+            mondo.setInventario(inventarioCaricato);
+        
+            mondo.setVisible(true);
+            this.dispose();
+        
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Errore nel caricamento: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnCaricaPartitaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,7 +145,7 @@ public class SchermataStart extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIstruzioni;
+    private javax.swing.JButton btnCaricaPartita;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

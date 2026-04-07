@@ -8,7 +8,7 @@ package gdr.dragonball;
  *
  * @author grottelli.gabriele
  */
-public class Personaggio {
+public class Personaggio implements java.io.Serializable {
     public String nome;
     public int hp, ki, attacco, difesa;
     public String mossaSpeciale;
@@ -99,8 +99,6 @@ public class Personaggio {
 
             case "syn_shenron":
                 this.setStatistiche("Syn Shenron", 300, 250, 70, 40, "Dark Dragon Beam"); break;
-            case "syn_shenron_omega":
-                this.setStatistiche("Omega Shenron", 500, 400, 100, 60, "Minus Energy Power Ball"); break;
             case "uub":
                 this.setStatistiche("Uub", 200, 300, 55, 30, "Majuub Beam"); break;
 

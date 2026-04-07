@@ -50,6 +50,10 @@ public class schermataMondo extends javax.swing.JFrame {
             lblPersonaggio.setText("Immagine non trovata");
         }
     }
+    
+    public void setInventario(Inventario salvato) {
+        this.mioInventario = salvato;
+    }
    
     
     /**
@@ -69,6 +73,7 @@ public class schermataMondo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         btnUsaOggetto = new javax.swing.JButton();
+        btnSalvaPartita = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -111,7 +116,7 @@ public class schermataMondo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCombatti);
-        btnCombatti.setBounds(150, 460, 90, 23);
+        btnCombatti.setBounds(150, 450, 90, 23);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -128,6 +133,15 @@ public class schermataMondo extends javax.swing.JFrame {
         });
         getContentPane().add(btnUsaOggetto);
         btnUsaOggetto.setBounds(90, 390, 90, 23);
+
+        btnSalvaPartita.setText("Salva il tuo percorso");
+        btnSalvaPartita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvaPartitaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalvaPartita);
+        btnSalvaPartita.setBounds(510, 460, 150, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,11 +233,13 @@ public class schermataMondo extends javax.swing.JFrame {
         double chance = Math.random();
     
         if (chance < 0.3) {
-            String[] possibiliOggetti = {"Senzu", "Capsula Hoi-Poi", "Tuta da combattimento"};
-            String trovato = possibiliOggetti[(int)(Math.random() * possibiliOggetti.length)];
         
-            mioInventario.aggiungiOggetto(trovato);
-            jTextArea1.append("Hai trovato: " + trovato + "! Salvato nell'inventario.\n");
+        String[] possibiliOggetti = {"Senzu", "Tuta da combattimento", "Capsula Hoi-Poi","Acqua Miracolosa", "Scouter", "Z-Sword", "Pesetto da 100 tonnellate", "Bastone Nyoi", "Pozione di Re Magno"
+        };
+        
+        String trovato = possibiliOggetti[(int)(Math.random() * possibiliOggetti.length)];
+        mioInventario.aggiungiOggetto(trovato);
+        jTextArea1.append("Hai trovato: " + trovato + "! Salvato nell'inventario.\n");
         
         } else if (chance < 0.7) {
             jTextArea1.append("ATTENZIONE! Un nemico ti sfida. Vuoi combattere?\n");
@@ -240,50 +256,100 @@ public class schermataMondo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEsploraActionPerformed
 
     private void btnUsaOggettoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsaOggettoActionPerformed
-        String nomeOggetto = JOptionPane.showInputDialog(this, 
-            "Cosa vuoi usare?\n" + mioInventario.mostraOggetti(), 
-            "Usa Oggetto", 
-            JOptionPane.QUESTION_MESSAGE);
+        String nomeOggetto = JOptionPane.showInputDialog(this,"Cosa vuoi usare?\n" + mioInventario.mostraOggetti(),"Usa Oggetto",JOptionPane.QUESTION_MESSAGE);
+        
         if (nomeOggetto == null || nomeOggetto.trim().isEmpty()) {
             return;
         }
 
         if (mioInventario.rimuoviOggetto(nomeOggetto)) {
-        
             String scelta = nomeOggetto.toLowerCase().trim();
-        
+
             switch (scelta) {
                 case "senzu":
-                    eroe.hp = 100; // O il valore massimo che hai impostato
+                    eroe.hp = 100; 
                     jTextArea1.append("Hai mangiato un Senzu! HP ripristinati al massimo.\n");
                     break;
-                
+
                 case "tuta da combattimento":
-                    eroe.difesa += 10;
-                    jTextArea1.append("Hai indossato la Tuta da combattimento. Difesa aumentata!\n");
+                    eroe.difesa += 15;
+                    jTextArea1.append("Hai indossato la Tuta. Difesa +15!\n");
                     break;
-                
+
                 case "capsula hoi-poi":
-                    eroe.attacco += 5;
-                    jTextArea1.append("Dalla capsula è uscita un'arma sperimentale! Attacco aumentato.\n");
+                    eroe.attacco += 10;
+                    jTextArea1.append("La capsula conteneva un'arma! Attacco +10.\n");
                     break;
-                
+
+                case "acqua miracolosa":
+                    eroe.attacco += 20;
+                    eroe.hp -= 10; 
+                    jTextArea1.append("Hai bevuto l'Acqua Miracolosa! Attacco aumentato drasticamente, ma ti senti spossato.\n");
+                    break;
+
+                case "scouter":
+                    eroe.attacco += 5;
+                    eroe.difesa += 5;
+                    jTextArea1.append("Hai attivato lo Scouter! Ora vedi i punti deboli del nemico.\n");
+                    break;
+
+                case "z-sword":
+                    eroe.attacco += 40;
+                    jTextArea1.append("Impugni la leggendaria Spada Z! La tua forza è ora immensa.\n");
+                    break;
+
+                case "pesetto da 100 tonnellate":
+                    eroe.difesa += 30;
+                    jTextArea1.append("Ti sei allenato con i pesi di Re Kaioh. Difesa aumentata!\n");
+                    break;
+                    
+                case "bastone nyoi":
+                    eroe.attacco += 12;
+                    jTextArea1.append("Il Bastone Nyoi si allunga! Colpisci da lontano: Attacco +12.\n");
+                    break;
+
+                case "pozione di re magno":
+                    eroe.hp += 50;
+                    if(eroe.hp > 100) eroe.hp = 100;
+                    jTextArea1.append("Hai bevuto la Pozione. Hai recuperato 50 HP.\n");
+                    break;
+
                 default:
-                    jTextArea1.append("Hai usato " + nomeOggetto + ", ma non sembra avere effetti immediati.\n");
+                    jTextArea1.append("Hai usato " + nomeOggetto + ", ma non ne capisci l'utilità.\n");
                     break;
                 }
-            }else {
-        
-                JOptionPane.showMessageDialog(this, "Non hai questo oggetto nell'inventario!", "Errore", JOptionPane.ERROR_MESSAGE);
-            
-            }
+        }else {
+            JOptionPane.showMessageDialog(this, "Non hai questo oggetto nell'inventario!", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnUsaOggettoActionPerformed
+
+    private void btnSalvaPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaPartitaActionPerformed
+        try {
+        
+        java.io.FileOutputStream fileOut = new java.io.FileOutputStream("salvataggio.dat");
+        java.io.ObjectOutputStream out = new java.io.ObjectOutputStream(fileOut);
+        
+        out.writeObject(eroe);
+        out.writeObject(mioInventario);
+        
+        out.close();
+        fileOut.close();
+        
+        JOptionPane.showMessageDialog(this, "Partita salvata con successo!", "Salvataggio", JOptionPane.INFORMATION_MESSAGE);
+        jTextArea1.append(">>> Progressi salvati nel file 'salvataggio.dat'\n");
+        
+        } catch (java.io.IOException i) {
+            i.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Errore durante il salvataggio!", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSalvaPartitaActionPerformed
 //
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCombatti;
     private javax.swing.JButton btnEsplora;
     private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnNonCombatti;
+    private javax.swing.JButton btnSalvaPartita;
     private javax.swing.JButton btnUsaOggetto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

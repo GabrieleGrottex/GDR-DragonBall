@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author grottelli.gabriele
  */
-public class Inventario {
+public class Inventario implements java.io.Serializable {
     private List<String> oggetti;
 
     public Inventario() {
