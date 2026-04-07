@@ -27,6 +27,12 @@ public class schermataMondo extends javax.swing.JFrame {
 
         setSize(800, 600);
         setLocationRelativeTo(null);
+        btnCombatti.setContentAreaFilled(false);
+        btnEsplora.setContentAreaFilled(false);
+        btnInventario.setContentAreaFilled(false);
+        btnNonCombatti.setContentAreaFilled(false);
+        btnSalvaPartita.setContentAreaFilled(false);
+        btnUsaOggetto.setContentAreaFilled(false);
     }
 
     private void caricaImmaginePersonaggio() {
@@ -56,6 +62,7 @@ public class schermataMondo extends javax.swing.JFrame {
     }
    
     
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,74 +81,74 @@ public class schermataMondo extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         btnUsaOggetto = new javax.swing.JButton();
         btnSalvaPartita = new javax.swing.JButton();
+        lblPersonaggio1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        btnInventario.setText("Inventario");
         btnInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInventarioActionPerformed(evt);
             }
         });
         getContentPane().add(btnInventario);
-        btnInventario.setBounds(20, 340, 90, 23);
+        btnInventario.setBounds(60, 587, 160, 50);
 
-        btnEsplora.setText("Esplora");
         btnEsplora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEsploraActionPerformed(evt);
             }
         });
         getContentPane().add(btnEsplora);
-        btnEsplora.setBounds(160, 340, 90, 23);
+        btnEsplora.setBounds(310, 593, 150, 40);
 
-        btnNonCombatti.setText("Rifiuta");
         btnNonCombatti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNonCombattiActionPerformed(evt);
             }
         });
         getContentPane().add(btnNonCombatti);
-        btnNonCombatti.setBounds(20, 450, 90, 23);
+        btnNonCombatti.setBounds(60, 783, 160, 50);
 
         lblPersonaggio.setText("jLabel1");
         getContentPane().add(lblPersonaggio);
-        lblPersonaggio.setBounds(0, 0, 310, 280);
+        lblPersonaggio.setBounds(80, 130, 400, 420);
 
-        btnCombatti.setText("Combatti");
         btnCombatti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCombattiActionPerformed(evt);
             }
         });
         getContentPane().add(btnCombatti);
-        btnCombatti.setBounds(150, 450, 90, 23);
+        btnCombatti.setBounds(280, 783, 160, 50);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(320, 10, 360, 320);
+        jScrollPane1.setBounds(590, 20, 620, 550);
 
-        btnUsaOggetto.setText("Usa");
         btnUsaOggetto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsaOggettoActionPerformed(evt);
             }
         });
         getContentPane().add(btnUsaOggetto);
-        btnUsaOggetto.setBounds(90, 390, 90, 23);
+        btnUsaOggetto.setBounds(180, 683, 160, 40);
 
-        btnSalvaPartita.setText("Salva il tuo percorso");
         btnSalvaPartita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvaPartitaActionPerformed(evt);
             }
         });
         getContentPane().add(btnSalvaPartita);
-        btnSalvaPartita.setBounds(430, 460, 230, 23);
+        btnSalvaPartita.setBounds(780, 800, 400, 40);
+
+        lblPersonaggio1.setIcon(new javax.swing.ImageIcon("C:\\Users\\grott\\Downloads\\Gemini_Generated_Image_mi4ubemi4ubemi4u.png")); // NOI18N
+        lblPersonaggio1.setText("jLabel1");
+        getContentPane().add(lblPersonaggio1);
+        lblPersonaggio1.setBounds(0, 0, 1220, 870);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -354,5 +361,6 @@ public class schermataMondo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblPersonaggio;
+    private javax.swing.JLabel lblPersonaggio1;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,6 +23,9 @@ public class SchermataStart extends javax.swing.JFrame {
         this.setUndecorated(true); 
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null); 
+        
+        btnCaricaPartita.setContentAreaFilled(false);
+        btnStart.setContentAreaFilled(false);
     }
 
     /**
@@ -37,8 +40,10 @@ public class SchermataStart extends javax.swing.JFrame {
         btnStart = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnCaricaPartita = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         btnStart.setFont(new java.awt.Font("Tempus Sans ITC", 3, 24)); // NOI18N
         btnStart.setText("Inzia Il Gioco");
@@ -47,45 +52,28 @@ public class SchermataStart extends javax.swing.JFrame {
                 btnStartActionPerformed(evt);
             }
         });
+        getContentPane().add(btnStart);
+        btnStart.setBounds(670, 370, 248, 49);
 
-        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 2, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 2, 100)); // NOI18N
         jLabel1.setText("DRAGON BALL");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(460, 60, 750, 140);
 
-        btnCaricaPartita.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
+        btnCaricaPartita.setFont(new java.awt.Font("Segoe Script", 0, 20)); // NOI18N
         btnCaricaPartita.setText("Carica Partita");
         btnCaricaPartita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCaricaPartitaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCaricaPartita);
+        btnCaricaPartita.setBounds(690, 510, 200, 70);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(231, 231, 231)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(291, 291, 291)
-                        .addComponent(btnCaricaPartita)))
-                .addGap(64, 243, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCaricaPartita)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\grott\\Downloads\\Gemini_Generated_Image_wpvu3iwpvu3iwpvu.png")); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(-20, 0, 1620, 670);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -148,5 +136,6 @@ public class SchermataStart extends javax.swing.JFrame {
     private javax.swing.JButton btnCaricaPartita;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

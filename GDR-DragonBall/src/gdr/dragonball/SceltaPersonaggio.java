@@ -136,6 +136,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
 
         jToggleButton1 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -151,37 +152,45 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
         jLabel1.setText("jLabel1");
+
+        jLabel8.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jButton1.setText("jButton1");
         getContentPane().add(jButton1);
-        jButton1.setBounds(20, 170, 130, 23);
+        jButton1.setBounds(10, 300, 180, 60);
 
         jButton2.setText("jButton2");
         getContentPane().add(jButton2);
-        jButton2.setBounds(170, 170, 140, 23);
+        jButton2.setBounds(220, 300, 180, 60);
 
         jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
-        jButton3.setBounds(340, 170, 130, 23);
+        jButton3.setBounds(430, 300, 200, 60);
 
         jButton4.setText("jButton4");
         getContentPane().add(jButton4);
-        jButton4.setBounds(510, 170, 150, 23);
+        jButton4.setBounds(660, 300, 210, 60);
 
         jButton5.setText("jButton5");
         getContentPane().add(jButton5);
-        jButton5.setBounds(700, 170, 150, 23);
+        jButton5.setBounds(910, 300, 180, 60);
 
         jButton6.setText("jButton6");
         getContentPane().add(jButton6);
-        jButton6.setBounds(880, 170, 150, 23);
+        jButton6.setBounds(1160, 303, 180, 60);
 
         btnIndietro.setText("Indietro");
         btnIndietro.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +199,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnIndietro);
-        btnIndietro.setBounds(289, 245, 72, 23);
+        btnIndietro.setBounds(380, 430, 190, 60);
 
         btnAvanti.setText("Avanti");
         btnAvanti.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +208,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAvanti);
-        btnAvanti.setBounds(530, 250, 72, 23);
+        btnAvanti.setBounds(660, 430, 210, 60);
 
         btnAvvia.setText("Avvia");
         btnAvvia.addActionListener(new java.awt.event.ActionListener() {
@@ -208,31 +217,36 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAvvia);
-        btnAvvia.setBounds(750, 250, 72, 23);
+        btnAvvia.setBounds(982, 423, 210, 70);
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(880, 0, 130, 170);
+        jLabel2.setBounds(1160, 70, 180, 230);
 
         jLabel3.setText("jLabel2");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 0, 130, 170);
+        jLabel3.setBounds(10, 40, 180, 260);
 
         jLabel4.setText("jLabel2");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(170, 0, 130, 170);
+        jLabel4.setBounds(220, 40, 180, 260);
 
         jLabel5.setText("jLabel2");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(340, 0, 130, 170);
+        jLabel5.setBounds(430, 50, 200, 250);
 
         jLabel6.setText("jLabel2");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(510, 0, 130, 170);
+        jLabel6.setBounds(660, 50, 210, 250);
 
         jLabel7.setText("jLabel2");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(700, 0, 130, 170);
+        jLabel7.setBounds(910, 60, 180, 240);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\grott\\Downloads\\Gemini_Generated_Image_sf6v45sf6v45sf6v.png")); // NOI18N
+        jLabel9.setText("jLabel2");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(0, 0, 1370, 550);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -251,6 +265,10 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     private void btnAvviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvviaActionPerformed
         avviaGioco();
     }//GEN-LAST:event_btnAvviaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,6 +312,8 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
