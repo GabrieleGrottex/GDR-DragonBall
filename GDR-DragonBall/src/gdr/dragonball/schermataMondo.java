@@ -68,6 +68,7 @@ public class schermataMondo extends javax.swing.JFrame {
         btnCombatti = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        btnUsaOggetto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -97,7 +98,7 @@ public class schermataMondo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNonCombatti);
-        btnNonCombatti.setBounds(20, 410, 90, 23);
+        btnNonCombatti.setBounds(20, 450, 90, 23);
 
         lblPersonaggio.setText("jLabel1");
         getContentPane().add(lblPersonaggio);
@@ -110,7 +111,7 @@ public class schermataMondo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCombatti);
-        btnCombatti.setBounds(160, 410, 90, 23);
+        btnCombatti.setBounds(150, 460, 90, 23);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -118,6 +119,15 @@ public class schermataMondo extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(320, 10, 360, 320);
+
+        btnUsaOggetto.setText("Usa");
+        btnUsaOggetto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsaOggettoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnUsaOggetto);
+        btnUsaOggetto.setBounds(90, 390, 90, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -131,12 +141,67 @@ public class schermataMondo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNonCombattiActionPerformed
 
     private void btnCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombattiActionPerformed
-        jTextArea1.append("Combatti!\n");
-        Personaggio nemico = new Personaggio("goku_ragazzo");
-        Mappa mappa = new Mappa("monte_paozu");
-        SchermataDiCombattimento f = new SchermataDiCombattimento(eroe, nemico, mappa);
-        f.setVisible(true);
-        this.dispose();    
+        String[] databaseMappe = {
+            "monte_paozu", "west_city", "satan_city", "isola_papaya", 
+            "kame_house", "stanza_spirito_tempo", "villaggio_pinguino", 
+            "pianeta_vegeta", "pianeta_namecc", "pianeta_vampa", "pianeta_sadala", 
+            "inferno", "pianeta_kaiohshin", "pianeta_beerus", "mondo_vuoto", 
+            "palazzo_zeno", "futuro_trunks", "dimensione_chaos", "regno_demoniaco", 
+            "nuovo_vegeta", "laboratorio_willow"
+        };
+
+        String chiaveMappaAleatoria = databaseMappe[(int)(Math.random() * databaseMappe.length)];
+        Mappa mappaAttuale = new Mappa(chiaveMappaAleatoria);
+
+        String[] databaseNemici = {
+            "goku_ragazzo", "goku_adulto", "goku_gt", "goku_ultra_istinto",
+            "vegeta_scouter", "vegeta_majin", "baby_vegeta", "vegeta_ultra_ego",
+            "gohan_bambino", "gohan_ragazzo", "gohan_mystic", "gohan_beast",
+            "trunks_futuro", "trunks_bambino", "xeno_trunks", "vegito", "gogeta",
+            "gotenks", "freezer", "cooler", "metal_cooler", "broly_anni_90",
+            "broly_super_saiyan_della_leggenda", "janemba", "hildegarn", "cell_max",
+            "beerus", "whis", "jiren", "goku_black", "zamasu", "hit", "crilin",
+            "yamcha", "tenshinhan", "maestro_muten", "arale", "syn_shenron",
+            "syn_shenron_omega", "uub", "moro", "granolah", "gas"
+        };
+    
+        String sceltaAleatoria = databaseNemici[(int)(Math.random() * databaseNemici.length)];
+        Personaggio pNemico = new Personaggio(sceltaAleatoria);
+    
+        StatoCombattimento statoEroe = new StatoCombattimento(this.eroe);
+        StatoCombattimento statoNemico = new StatoCombattimento(pNemico);
+    
+        jTextArea1.append("--- NUOVO SCONTRO --- \n");
+        jTextArea1.append("Luogo: " + mappaAttuale.nome + " (Bonus Danni: x" + mappaAttuale.bonusDanno + ")\n");
+        jTextArea1.append("Avversario: " + pNemico.nome + "!\n");
+
+        double ratio = (double) eroe.attacco / (eroe.attacco + pNemico.difesa);
+        int probVittoria = (int) (ratio * 100);
+        jTextArea1.append("Probabilità di successo: " + probVittoria + "%\n");
+
+        if ((int)(Math.random() * 101) <= probVittoria) {
+            int dannoInflitto = GestoreDanni.calcola(statoEroe, statoNemico, mappaAttuale);
+            jTextArea1.append("Hai usato " + eroe.mossaSpeciale + " infliggendo " + dannoInflitto + " danni!\n");
+            jTextArea1.append("VITTORIA! " + pNemico.nome + " è KO.\n");
+        
+            String[] premi = {"Senzu", "Capsula Hoi-Poi", "Sfera del Drago"};
+            mioInventario.aggiungiOggetto(premi[(int)(Math.random() * premi.length)]);
+        } else {
+            int dannoSubito = GestoreDanni.calcola(statoNemico, statoEroe, mappaAttuale);
+            eroe.hp -= dannoSubito;
+            jTextArea1.append(pNemico.nome + " ti colpisce con " + pNemico.mossaSpeciale + "!\n");
+            jTextArea1.append("Danno ricevuto: " + dannoSubito + ". HP rimanenti: " + Math.max(0, eroe.hp) + "\n");
+        
+            if (eroe.hp <= 0) {
+                jTextArea1.append("!!! SEI STATO SCONFITTO !!!\n");
+                btnEsplora.setEnabled(false);
+            }
+        }
+
+        nemicoPresente = false;
+        btnCombatti.setVisible(false);
+        btnNonCombatti.setVisible(false);
+        btnEsplora.setEnabled(true);
     }//GEN-LAST:event_btnCombattiActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
@@ -154,7 +219,7 @@ public class schermataMondo extends javax.swing.JFrame {
         double chance = Math.random();
     
         if (chance < 0.3) {
-            String[] possibiliOggetti = {"Senzu", "Capsula Hoi-Poi", "Sfera del Drago (4 stelle)", "Tuta da combattimento"};
+            String[] possibiliOggetti = {"Senzu", "Capsula Hoi-Poi", "Tuta da combattimento"};
             String trovato = possibiliOggetti[(int)(Math.random() * possibiliOggetti.length)];
         
             mioInventario.aggiungiOggetto(trovato);
@@ -173,12 +238,53 @@ public class schermataMondo extends javax.swing.JFrame {
             jTextArea1.append("Hai camminato a lungo, ma non hai trovato nulla.\n");
         }
     }//GEN-LAST:event_btnEsploraActionPerformed
+
+    private void btnUsaOggettoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsaOggettoActionPerformed
+        String nomeOggetto = JOptionPane.showInputDialog(this, 
+            "Cosa vuoi usare?\n" + mioInventario.mostraOggetti(), 
+            "Usa Oggetto", 
+            JOptionPane.QUESTION_MESSAGE);
+        if (nomeOggetto == null || nomeOggetto.trim().isEmpty()) {
+            return;
+        }
+
+        if (mioInventario.rimuoviOggetto(nomeOggetto)) {
+        
+            String scelta = nomeOggetto.toLowerCase().trim();
+        
+            switch (scelta) {
+                case "senzu":
+                    eroe.hp = 100; // O il valore massimo che hai impostato
+                    jTextArea1.append("Hai mangiato un Senzu! HP ripristinati al massimo.\n");
+                    break;
+                
+                case "tuta da combattimento":
+                    eroe.difesa += 10;
+                    jTextArea1.append("Hai indossato la Tuta da combattimento. Difesa aumentata!\n");
+                    break;
+                
+                case "capsula hoi-poi":
+                    eroe.attacco += 5;
+                    jTextArea1.append("Dalla capsula è uscita un'arma sperimentale! Attacco aumentato.\n");
+                    break;
+                
+                default:
+                    jTextArea1.append("Hai usato " + nomeOggetto + ", ma non sembra avere effetti immediati.\n");
+                    break;
+                }
+            }else {
+        
+                JOptionPane.showMessageDialog(this, "Non hai questo oggetto nell'inventario!", "Errore", JOptionPane.ERROR_MESSAGE);
+            
+            }
+    }//GEN-LAST:event_btnUsaOggettoActionPerformed
 //
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCombatti;
     private javax.swing.JButton btnEsplora;
     private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnNonCombatti;
+    private javax.swing.JButton btnUsaOggetto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblPersonaggio;

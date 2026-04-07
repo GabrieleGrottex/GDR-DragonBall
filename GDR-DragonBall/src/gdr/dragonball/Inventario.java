@@ -38,4 +38,15 @@ public class Inventario {
     public List<String> getOggetti() {
         return oggetti;
     }
+    public boolean rimuoviOggetto(String nomeDaRimuovere) {
+    
+        for (int i = 0; i < oggetti.size(); i++) {
+        
+            if (oggetti.get(i).equalsIgnoreCase(nomeDaRimuovere)) {
+                oggetti.remove(i);
+                return true;      
+            }
+        }
+    return false; 
+    }
 }

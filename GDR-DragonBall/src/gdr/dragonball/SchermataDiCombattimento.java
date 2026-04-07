@@ -4,98 +4,24 @@
  */
 package gdr.dragonball;
 
-import javax.swing.*;
-
 /**
  *
- * @author grottelli.gabriele
+ * @author grott
  */
-public class SchermataDiCombattimento extends JFrame {
-
-    private static final java.util.logging.Logger logger =
-            java.util.logging.Logger.getLogger(SchermataDiCombattimento.class.getName());
-
-    private GestoreCombattimento combattimento;
-    private Personaggio giocatore;
-    private Personaggio nemico;
-    private Mappa mappa;
-    private StatoCombattimento player;
-    private StatoCombattimento enemy;
-
-    public SchermataDiCombattimento(Personaggio giocatore, Personaggio nemico, Mappa mappa) {
-        this.giocatore = giocatore;
-        this.nemico = nemico;
-        this.mappa = mappa;
-
-        initComponents();
-
-        setSize(900, 600);
-        setLocationRelativeTo(null);
-
-        player = new StatoCombattimento(giocatore);
-        enemy = new StatoCombattimento(nemico);
-
-        SwingUtilities.invokeLater(() -> {
-            caricaImmagine(jLabel1, giocatore);
-            caricaImmagine(jLabel2, nemico);
-            caricaSfondo();
-        });
-    }
-
+public class SchermataDiCombattimento extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SchermataDiCombattimento.class.getName());
+    
+    
+     /**
+     * Creates new form SchermataDiCombattimento
+     */
     public SchermataDiCombattimento() {
         initComponents();
+
     }
 
-    private void caricaImmagine(JLabel label, Personaggio p) {
-        String nomeFile = p.nome.toLowerCase().replace(" ", "_").replace("(", "").replace(")", "");
-        String path = "/gdr/dragonball/immagini/" + nomeFile + ".png";
-        java.net.URL imgURL = getClass().getResource(path);
 
-        if (imgURL != null) {
-            ImageIcon icon = new ImageIcon(imgURL);
-            int w = label.getWidth();
-            int h = label.getHeight();
-            java.awt.Image img = icon.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH);
-            label.setIcon(new ImageIcon(img));
-            label.setText("");
-        } else {
-            label.setText("No Img");
-        }
-    }
-
-    private void caricaSfondo() {
-        String path = "/gdr/dragonball/immagini/sfondo.png";
-        java.net.URL imgURL = getClass().getResource(path);
-
-        if (imgURL != null) {
-            ImageIcon icon = new ImageIcon(imgURL);
-            int w = btnMossaFinale.getWidth();
-            int h = btnMossaFinale.getHeight();
-            java.awt.Image img = icon.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH);
-            btnMossaFinale.setIcon(new ImageIcon(img));
-            btnMossaFinale.setText("");
-        }
-    }
-
-    private void turnoNemico() {
-        if (!enemy.seVivo()) {
-            jTextArea1.append("Hai vinto!\n");
-            return;
-        }
-
-        int danno = GestoreDanni.calcola(enemy, player, mappa);
-        player.hpAttuali -= danno;
-
-        jTextArea1.append("Il nemico ti fa " + danno + " danni!\n");
-
-        player.inDifesa = false;
-        player.staSchivando = false;
-
-        if (!player.seVivo()) {
-            jTextArea1.append("Sei stato sconfitto!\n");
-        }
-    }
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,126 +31,117 @@ public class SchermataDiCombattimento extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         btnAttacco = new javax.swing.JButton();
         btnDifesa = new javax.swing.JButton();
-        btnCaricaKi = new javax.swing.JButton();
         btnSchivata = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        btnMossaFinale = new javax.swing.JLabel();
+        btnMossaFinale = new javax.swing.JButton();
+        lblImmagineNemico1 = new javax.swing.JLabel();
+        btnCaricaKi = new javax.swing.JButton();
+        CaricaKi2 = new javax.swing.JButton();
+        lblImmagineNemico2 = new javax.swing.JLabel();
+        lblSfondomappa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(60, 30, 180, 210);
-
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(480, 40, 250, 170);
-
-        btnAttacco.setText("Attacco");
-        btnAttacco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAttaccoActionPerformed(evt);
-            }
-        });
+        btnAttacco.setText("jButton1");
+        btnAttacco.addActionListener(this::btnAttaccoActionPerformed);
         getContentPane().add(btnAttacco);
-        btnAttacco.setBounds(40, 270, 72, 23);
+        btnAttacco.setBounds(17, 318, 75, 23);
 
-        btnDifesa.setText("Difesa");
-        btnDifesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDifesaActionPerformed(evt);
-            }
-        });
+        btnDifesa.setText("jButton1");
+        btnDifesa.addActionListener(this::btnDifesaActionPerformed);
         getContentPane().add(btnDifesa);
-        btnDifesa.setBounds(180, 270, 72, 23);
+        btnDifesa.setBounds(138, 318, 75, 23);
 
-        btnCaricaKi.setText("CaricaKi");
-        btnCaricaKi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCaricaKiActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCaricaKi);
-        btnCaricaKi.setBounds(40, 360, 73, 23);
-
-        btnSchivata.setText("Schivata");
-        btnSchivata.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSchivataActionPerformed(evt);
-            }
-        });
+        btnSchivata.setText("jButton1");
+        btnSchivata.addActionListener(this::btnSchivataActionPerformed);
         getContentPane().add(btnSchivata);
-        btnSchivata.setBounds(180, 360, 74, 23);
+        btnSchivata.setBounds(17, 379, 75, 20);
 
-        jButton1.setText("MossaFinale");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(40, 430, 210, 23);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(370, 270, 380, 180);
-
-        btnMossaFinale.setText("jLabel3");
+        btnMossaFinale.setText("jButton1");
+        btnMossaFinale.addActionListener(this::btnMossaFinaleActionPerformed);
         getContentPane().add(btnMossaFinale);
-        btnMossaFinale.setBounds(0, 0, 810, 600);
+        btnMossaFinale.setBounds(80, 440, 75, 23);
+
+        lblImmagineNemico1.setText("jLabel1");
+        getContentPane().add(lblImmagineNemico1);
+        lblImmagineNemico1.setBounds(0, 0, 190, 250);
+
+        btnCaricaKi.setText("jButton1");
+        btnCaricaKi.addActionListener(this::btnCaricaKiActionPerformed);
+        getContentPane().add(btnCaricaKi);
+        btnCaricaKi.setBounds(138, 376, 75, 23);
+
+        CaricaKi2.setText("jButton1");
+        getContentPane().add(CaricaKi2);
+        CaricaKi2.setBounds(138, 376, 75, 23);
+
+        lblImmagineNemico2.setText("jLabel1");
+        getContentPane().add(lblImmagineNemico2);
+        lblImmagineNemico2.setBounds(330, 30, 190, 250);
+
+        lblSfondomappa.setText("jLabel1");
+        getContentPane().add(lblSfondomappa);
+        lblSfondomappa.setBounds(0, 0, 520, 490);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAttaccoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttaccoActionPerformed
-        int danno = GestoreDanni.calcola(player, enemy, mappa);
-        enemy.hpAttuali -= danno;
-        jTextArea1.append("Hai fatto " + danno + " danni!\n");
-        turnoNemico();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnAttaccoActionPerformed
 
     private void btnDifesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDifesaActionPerformed
-        player.inDifesa = true;
-        jTextArea1.append("Ti metti in difesa!\n");
-        turnoNemico();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnDifesaActionPerformed
 
-    private void btnCaricaKiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaKiActionPerformed
-        player.kiAttuale += 20;
-        jTextArea1.append("Carichi KI!\n");
-        turnoNemico();
-    }//GEN-LAST:event_btnCaricaKiActionPerformed
-
     private void btnSchivataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSchivataActionPerformed
-        player.staSchivando = true;
-        jTextArea1.append("Provi a schivare!\n");
-        turnoNemico();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnSchivataActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCaricaKiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaKiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCaricaKiActionPerformed
+
+    private void btnMossaFinaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMossaFinaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMossaFinaleActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new SchermataDiCombattimento().setVisible(true));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CaricaKi2;
     private javax.swing.JButton btnAttacco;
     private javax.swing.JButton btnCaricaKi;
     private javax.swing.JButton btnDifesa;
-    private javax.swing.JLabel btnMossaFinale;
+    private javax.swing.JButton btnMossaFinale;
     private javax.swing.JButton btnSchivata;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblImmagineNemico1;
+    private javax.swing.JLabel lblImmagineNemico2;
+    private javax.swing.JLabel lblSfondomappa;
     // End of variables declaration//GEN-END:variables
 }

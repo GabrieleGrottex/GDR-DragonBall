@@ -19,56 +19,55 @@ public class Mappa {
         switch (scelta) {
             
             case "monte_paozu":
-                setMappa("Monte Paozu", 1.0, "Nostalgia: Recupero KI leggermente aumentato."); break;
+                setMappa("Monte Paozu", 1.0); break;
             case "west_city":
-                setMappa("Città dell'Ovest", 1.0, "Tecnologia: Gli oggetti curativi sono più efficaci."); break;
+                setMappa("Città dell'Ovest", 1.0); break;
             case "satan_city":
-                setMappa("Satan City", 0.9, "Folla: La difesa aumenta per non ferire i civili."); break;
+                setMappa("Satan City", 0.9); break;
             case "isola_papaya":
-                setMappa("Isola di Papaya (Tenkaichi)", 1.1, "Ring: Se schivi troppo, rischi il fuori campo!"); break;
+                setMappa("Isola di Papaya (Tenkaichi)", 1.1); break;
             case "kame_house":
-                setMappa("Kame House", 1.0, "Relax: Recupero HP ogni turno."); break;
+                setMappa("Kame House", 1.0); break;
             case "stanza_spirito_tempo":
-                setMappa("Stanza dello Spirito e del Tempo", 1.5, "Gravità: Il danno è altissimo, ma la Schivata costa KI."); break;
+                setMappa("Stanza dello Spirito e del Tempo", 1.5); break;
             case "villaggio_pinguino":
-                setMappa("Villaggio Pinguino", 2.0, "Gag: I danni sono casuali e imprevedibili!"); break;
+                setMappa("Villaggio Pinguino", 2.0); break;
 
             case "pianeta_vegeta":
-                setMappa("Pianeta Vegeta", 1.3, "Orgoglio Saiyan: L'attacco aumenta quando la vita è bassa."); break;
+                setMappa("Pianeta Vegeta", 1.3); break;
             case "pianeta_namecc":
-                setMappa("Pianeta Namecc", 1.0, "Atmosfera Calma: Rigenerazione costante del KI."); break;
+                setMappa("Pianeta Namecc", 1.0); break;
             case "pianeta_vampa":
-                setMappa("Pianeta Vampa", 1.2, "Ostilità: Gli attacchi speciali costano meno KI."); break;
+                setMappa("Pianeta Vampa", 1.2); break;
             case "pianeta_sadala":
-                setMappa("Pianeta Sadala", 1.1, "Evoluzione: Bonus alla difesa per i Saiyan."); break;
+                setMappa("Pianeta Sadala", 1.1); break;
 
             case "inferno":
-                setMappa("Inferno", 1.2, "Tormento: Non è possibile recuperare HP."); break;
+                setMappa("Inferno", 1.2); break;
             case "pianeta_kaiohshin":
-                setMappa("Pianeta dei Kaiohshin", 1.4, "Terreno Sacro: Le mosse speciali fanno danni devastanti."); break;
+                setMappa("Pianeta dei Kaiohshin", 1.4); break;
             case "pianeta_beerus":
-                setMappa("Pianeta di Beerus", 1.6, "Allenamento Divino: Il KI si carica istantaneamente."); break;
+                setMappa("Pianeta di Beerus", 1.6); break;
             case "mondo_vuoto":
-                setMappa("Mondo del Vuoto (Torneo Potere)", 0.8, "Sopravvivenza: La difesa è fondamentale qui."); break;
+                setMappa("Mondo del Vuoto (Torneo Potere)", 0.8); break;
             case "palazzo_zeno":
-                setMappa("Palazzo di Zeno", 3.0, "Capriccio del Re: Partita velocissima, danni triplicati."); break;
+                setMappa("Palazzo di Zeno", 3.0); break;
             case "futuro_trunks":
-                setMappa("Futuro di Trunks", 1.3, "Disperazione: Gli attacchi consumano più KI."); break;
+                setMappa("Futuro di Trunks", 1.3); break;
             case "dimensione_chaos":
-                setMappa("Dimensione del Chaos", 1.8, "Realtà Infranta: Le difese sono azzerate."); break;
+                setMappa("Dimensione del Chaos", 1.8); break;
             case "regno_demoniaco":
-                setMappa("Regno Demoniaco", 1.2, "Oscurità: La Schivata è più difficile da eseguire."); break;
+                setMappa("Regno Demoniaco", 1.2); break;
 
             case "nuovo_vegeta":
-                setMappa("Pianeta Nuovo Vegeta", 1.4, "Trappola: Ogni turno perdi un po' di HP."); break;
+                setMappa("Pianeta Nuovo Vegeta", 1.4); break;
             case "laboratorio_willow":
-                setMappa("Laboratorio del Dr. Willow", 0.9, "Gelo: La velocità di carica dell'Aura è dimezzata."); break;
+                setMappa("Laboratorio del Dr. Willow", 0.9); break;
         }
     }
 
-    private void setMappa(String n, double b, String e) {
+    private void setMappa(String n, double b) {
         this.nome = n;
         this.bonusDanno = b;
-        this.effettoSpeciale = e;
     }
 }

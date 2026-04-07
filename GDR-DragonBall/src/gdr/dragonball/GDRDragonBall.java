@@ -14,10 +14,8 @@ public class GDRDragonBall {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(() -> {
-        new SchermataStart().setVisible(true);
-    });
-}
+        java.awt.EventQueue.invokeLater(() -> new SchermataStart().setVisible(true));
+    }
 }
     
 
