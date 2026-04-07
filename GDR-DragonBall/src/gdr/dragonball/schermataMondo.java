@@ -141,7 +141,7 @@ public class schermataMondo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSalvaPartita);
-        btnSalvaPartita.setBounds(510, 460, 150, 23);
+        btnSalvaPartita.setBounds(430, 460, 230, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -28,7 +28,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         "broly_super_saiyan_della_leggenda", "janemba", "hildegarn", "cell_max",
         "beerus", "whis", "jiren", "goku_black", "zamasu", "hit",
         "crilin", "yamcha", "tenshinhan", "maestro_muten", "arale",
-        "syn_shenron", "syn_shenron_omega", "uub",
+        "syn_shenron", "uub",
         "moro", "granolah", "gas"
     };
 
