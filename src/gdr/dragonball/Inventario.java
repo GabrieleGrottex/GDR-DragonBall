@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  *
- * @author grottelli.gabriele
+ * @author grott
  */
-public class Inventario implements java.io.Serializable {
+public class Inventario {
     private List<String> oggetti;
 
     public Inventario() {

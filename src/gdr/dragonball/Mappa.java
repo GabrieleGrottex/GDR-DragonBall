@@ -6,7 +6,7 @@ package gdr.dragonball;
 
 /**
  *
- * @author grottelli.gabriele
+ * @author grott
  */
 public class Mappa {
     public String nome;

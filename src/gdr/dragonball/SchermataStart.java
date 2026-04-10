@@ -6,7 +6,7 @@ package gdr.dragonball;
 
 /**
  *
- * @author grottelli.gabriele
+ * @author grott
  */
 public class SchermataStart extends javax.swing.JFrame {
     
@@ -38,74 +38,75 @@ public class SchermataStart extends javax.swing.JFrame {
     private void initComponents() {
 
         btnStart = new javax.swing.JButton();
+        btnCarica = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnCaricaPartita = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
-        btnStart.setFont(new java.awt.Font("Tempus Sans ITC", 3, 24)); // NOI18N
-        btnStart.setText("Inzia Il Gioco");
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnStart);
-        btnStart.setBounds(670, 370, 248, 49);
+        btnStart.setText("jButton1");
+        btnStart.addActionListener(this::btnStartActionPerformed);
 
-        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 2, 100)); // NOI18N
-        jLabel1.setText("DRAGON BALL");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(460, 60, 750, 140);
+        btnCarica.setText("jButton1");
+        btnCarica.addActionListener(this::btnCaricaActionPerformed);
 
-        btnCaricaPartita.setFont(new java.awt.Font("Segoe Script", 0, 20)); // NOI18N
-        btnCaricaPartita.setText("Carica Partita");
-        btnCaricaPartita.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCaricaPartitaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCaricaPartita);
-        btnCaricaPartita.setBounds(690, 510, 200, 70);
+        jLabel1.setText("jLabel1");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\grott\\Downloads\\Gemini_Generated_Image_wpvu3iwpvu3iwpvu.png")); // NOI18N
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(-20, 0, 1620, 670);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(428, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnStart)
+                    .addComponent(btnCarica))
+                .addGap(392, 392, 392))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(335, Short.MAX_VALUE)
+                .addComponent(btnStart)
+                .addGap(79, 79, 79)
+                .addComponent(btnCarica)
+                .addGap(112, 112, 112))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        SceltaPersonaggio scelta = new SceltaPersonaggio();
-        scelta.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnStartActionPerformed
-
-    private void btnCaricaPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaPartitaActionPerformed
+    private void btnCaricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaricaActionPerformed
         try {
             java.io.FileInputStream fileIn = new java.io.FileInputStream("salvataggio.dat");
             java.io.ObjectInputStream in = new java.io.ObjectInputStream(fileIn);
-        
+
             Personaggio eroeCaricato = (Personaggio) in.readObject();
             Inventario inventarioCaricato = (Inventario) in.readObject();
-        
+
             in.close();
             fileIn.close();
-        
-            schermataMondo mondo = new schermataMondo(eroeCaricato);
-        
+
+            SceltaPersonaggio mondo = new SceltaPersonaggio(eroeCaricato);
+
             mondo.setInventario(inventarioCaricato);
-        
+
             mondo.setVisible(true);
             this.dispose();
-        
+
         } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Errore nel caricamento: " + e.getMessage());
         }
-    }//GEN-LAST:event_btnCaricaPartitaActionPerformed
+    }//GEN-LAST:event_btnCaricaActionPerformed
+
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        schermataMondo scelta = new schermataMondo();
+        scelta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnStartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,9 +134,8 @@ public class SchermataStart extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCaricaPartita;
+    private javax.swing.JButton btnCarica;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

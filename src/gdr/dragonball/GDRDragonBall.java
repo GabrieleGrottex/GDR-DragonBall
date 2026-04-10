@@ -6,7 +6,7 @@ package gdr.dragonball;
 
 /**
  *
- * @author grottelli.gabriele
+ * @author grott
  */
 public class GDRDragonBall {
 
@@ -16,6 +16,5 @@ public class GDRDragonBall {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> new SchermataStart().setVisible(true));
     }
-}
     
-
+}

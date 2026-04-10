@@ -6,10 +6,9 @@ package gdr.dragonball;
 
 /**
  *
- * @author grottelli.gabriele
+ * @author grott
  */
 public class GestoreDanni {
-    
     public static int calcola(StatoCombattimento attaccante, StatoCombattimento difensore, Mappa mappa) {
         if (difensore.staSchivando) {
             return 0;
@@ -26,4 +25,3 @@ public class GestoreDanni {
         return Math.max((int)dannoFinale, 5);
     }
 }
-

@@ -6,9 +6,9 @@ package gdr.dragonball;
 
 /**
  *
- * @author grottelli.gabriele
+ * @author grott
  */
-public class Personaggio implements java.io.Serializable {
+public class Personaggio {
     public String nome;
     public int hp, ki, attacco, difesa;
     public String mossaSpeciale;
