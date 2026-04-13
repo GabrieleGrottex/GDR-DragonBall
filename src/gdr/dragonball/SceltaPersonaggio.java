@@ -35,7 +35,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     private int indicePagina = 0; 
     private final int BOTTONI_PER_PAGINA = 6;
 
-    public SceltaPersonaggiogio() {
+    public SceltaPersonaggio() {
         initComponents(); 
         
         bottoniPersonaggi = new JButton[]{jButton1, jButton2, jButton3, jButton4, jButton5, jButton6};
@@ -109,17 +109,14 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         
         btnAvvia.setText("Avvia con " + nomeVisibile);
         btnAvvia.setVisible(true);
-        
-        System.out.println("DEBUG: Selezionato " + nomeID);
     }
 
     private void avviaGioco() {
         if (personaggioSelezionato != null) {
 
-            SceltaPersonaggio mondo = new SceltaPersonaggio(personaggioSelezionato);
+            schermataMondo mondo = new schermataMondo(personaggioSelezionato);
             mondo.setVisible(true);
             this.dispose();
-
         } else {
             JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima!");
         }
@@ -218,6 +215,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(910, 60, 180, 240);
 
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\grott\\Downloads\\Gemini_Generated_Image_sf6v45sf6v45sf6v.png")); // NOI18N
         jLabel9.setText("jLabel2");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(0, 0, 1370, 520);
