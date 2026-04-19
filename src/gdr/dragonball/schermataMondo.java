@@ -4,12 +4,10 @@
  */
 package gdr.dragonball;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
+import javax.swing.*;
 /**
  *
- * @author grott
+ * @author grottelli.gabriele
  */
 public class schermataMondo extends javax.swing.JFrame {
     
@@ -18,8 +16,8 @@ public class schermataMondo extends javax.swing.JFrame {
     private Inventario mioInventario = new Inventario();
     private boolean nemicoPresente = false;
 
-    public schermataMondo(Personaggio eroe) {
-        this.eroe = eroe;
+    public schermataMondo(Personaggio p) {
+        this.eroe = p;
         initComponents();
 
         caricaImmaginePersonaggio();
@@ -38,7 +36,9 @@ public class schermataMondo extends javax.swing.JFrame {
     }
 
     private void caricaImmaginePersonaggio() {
-        String path = "/gdr/dragonball/immagini/" + eroe.id + ".png";
+        String nomeFile = eroe.nome.toLowerCase().replace(" ", "_").replace("(", "").replace(")", "");
+
+        String path = "/gdr/dragonball/immagini/" + nomeFile + ".png";
 
         java.net.URL imgURL = getClass().getResource(path);
 
@@ -53,14 +53,16 @@ public class schermataMondo extends javax.swing.JFrame {
             lblPersonaggio.setIcon(new ImageIcon(img));
             lblPersonaggio.setText("");
         } else {
-            lblPersonaggio.setText("Immagine non trovata: " + path); 
+            lblPersonaggio.setText("Immagine non trovata");
         }
     }
     
     public void setInventario(Inventario salvato) {
         this.mioInventario = salvato;
     }
-
+   
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,82 +82,148 @@ public class schermataMondo extends javax.swing.JFrame {
         btnUsaOggetto = new javax.swing.JButton();
         btnSalvaPartita = new javax.swing.JButton();
         lblPersonaggio1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        btnInventario.addActionListener(this::btnInventarioActionPerformed);
+        btnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnInventario);
-        btnInventario.setBounds(60, 580, 160, 50);
+        btnInventario.setBounds(60, 587, 160, 50);
 
-        btnEsplora.addActionListener(this::btnEsploraActionPerformed);
+        btnEsplora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEsploraActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEsplora);
-        btnEsplora.setBounds(300, 580, 160, 40);
+        btnEsplora.setBounds(310, 593, 150, 40);
 
-        btnNonCombatti.addActionListener(this::btnNonCombattiActionPerformed);
+        btnNonCombatti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNonCombattiActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnNonCombatti);
-        btnNonCombatti.setBounds(60, 770, 160, 50);
+        btnNonCombatti.setBounds(60, 783, 160, 50);
 
         lblPersonaggio.setText("jLabel1");
         getContentPane().add(lblPersonaggio);
-        lblPersonaggio.setBounds(80, 70, 400, 420);
+        lblPersonaggio.setBounds(80, 130, 400, 420);
 
-        btnCombatti.addActionListener(this::btnCombattiActionPerformed);
+        btnCombatti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCombattiActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCombatti);
-        btnCombatti.setBounds(290, 770, 160, 50);
+        btnCombatti.setBounds(280, 783, 160, 50);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(590, 0, 630, 560);
+        jScrollPane1.setBounds(590, 20, 620, 550);
 
-        btnUsaOggetto.addActionListener(this::btnUsaOggettoActionPerformed);
+        btnUsaOggetto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsaOggettoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnUsaOggetto);
-        btnUsaOggetto.setBounds(180, 670, 160, 40);
+        btnUsaOggetto.setBounds(180, 683, 160, 40);
 
-        btnSalvaPartita.addActionListener(this::btnSalvaPartitaActionPerformed);
+        btnSalvaPartita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvaPartitaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSalvaPartita);
-        btnSalvaPartita.setBounds(770, 800, 400, 40);
+        btnSalvaPartita.setBounds(780, 800, 400, 40);
 
         lblPersonaggio1.setIcon(new javax.swing.ImageIcon("C:\\Users\\grott\\Downloads\\Gemini_Generated_Image_mi4ubemi4ubemi4u.png")); // NOI18N
         lblPersonaggio1.setText("jLabel1");
         getContentPane().add(lblPersonaggio1);
-        lblPersonaggio1.setBounds(0, 0, 1220, 860);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 100, 100);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 100, 100);
+        lblPersonaggio1.setBounds(0, 0, 1220, 870);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNonCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNonCombattiActionPerformed
+        jTextArea1.append("Hai deciso di non combattere.\n");
+        nemicoPresente = false;
+        btnCombatti.setVisible(false);
+        btnNonCombatti.setVisible(false);
+        btnEsplora.setEnabled(true);
+    }//GEN-LAST:event_btnNonCombattiActionPerformed
+
+    private void btnCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombattiActionPerformed
+        String[] databaseMappe = {
+            "monte_paozu", "west_city", "satan_city", "isola_papaya", 
+            "kame_house", "stanza_spirito_tempo", "villaggio_pinguino", 
+            "pianeta_vegeta", "pianeta_namecc", "pianeta_vampa", "pianeta_sadala", 
+            "inferno", "pianeta_kaiohshin", "pianeta_beerus", "mondo_vuoto", 
+            "palazzo_zeno", "futuro_trunks", "dimensione_chaos", "regno_demoniaco", 
+            "nuovo_vegeta", "laboratorio_willow"
+        };
+
+        String chiaveMappaAleatoria = databaseMappe[(int)(Math.random() * databaseMappe.length)];
+        Mappa mappaAttuale = new Mappa(chiaveMappaAleatoria);
+
+        String[] databaseNemici = {
+            "goku_ragazzo", "goku_adulto", "goku_gt", "goku_ultra_istinto",
+            "vegeta_scouter", "vegeta_majin", "baby_vegeta", "vegeta_ultra_ego",
+            "gohan_bambino", "gohan_ragazzo", "gohan_mystic", "gohan_beast",
+            "trunks_futuro", "trunks_bambino", "xeno_trunks", "vegito", "gogeta",
+            "gotenks", "freezer", "cooler", "metal_cooler", "broly_anni_90",
+            "broly_super_saiyan_della_leggenda", "janemba", "hildegarn", "cell_max",
+            "beerus", "whis", "jiren", "goku_black", "zamasu", "hit", "crilin",
+            "yamcha", "tenshinhan", "maestro_muten", "arale", "syn_shenron",
+            "syn_shenron_omega", "uub", "moro", "granolah", "gas"
+        };
+    
+        String sceltaAleatoria = databaseNemici[(int)(Math.random() * databaseNemici.length)];
+        Personaggio pNemico = new Personaggio(sceltaAleatoria);
+    
+        StatoCombattimento statoEroe = new StatoCombattimento(this.eroe);
+        StatoCombattimento statoNemico = new StatoCombattimento(pNemico);
+    
+        jTextArea1.append("--- NUOVO SCONTRO --- \n");
+        jTextArea1.append("Luogo: " + mappaAttuale.nome + " (Bonus Danni: x" + mappaAttuale.bonusDanno + ")\n");
+        jTextArea1.append("Avversario: " + pNemico.nome + "!\n");
+
+        double ratio = (double) eroe.attacco / (eroe.attacco + pNemico.difesa);
+        int probVittoria = (int) (ratio * 100);
+        jTextArea1.append("Probabilità di successo: " + probVittoria + "%\n");
+
+        if ((int)(Math.random() * 101) <= probVittoria) {
+            int dannoInflitto = GestoreDanni.calcola(statoEroe, statoNemico, mappaAttuale);
+            jTextArea1.append("Hai usato " + eroe.mossaSpeciale + " infliggendo " + dannoInflitto + " danni!\n");
+            jTextArea1.append("VITTORIA! " + pNemico.nome + " è KO.\n");
+        
+            String[] premi = {"Senzu", "Capsula Hoi-Poi", "Sfera del Drago"};
+            mioInventario.aggiungiOggetto(premi[(int)(Math.random() * premi.length)]);
+        } else {
+            int dannoSubito = GestoreDanni.calcola(statoNemico, statoEroe, mappaAttuale);
+            eroe.hp -= dannoSubito;
+            jTextArea1.append(pNemico.nome + " ti colpisce con " + pNemico.mossaSpeciale + "!\n");
+            jTextArea1.append("Danno ricevuto: " + dannoSubito + ". HP rimanenti: " + Math.max(0, eroe.hp) + "\n");
+        
+            if (eroe.hp <= 0) {
+                jTextArea1.append("!!! SEI STATO SCONFITTO !!!\n");
+                btnEsplora.setEnabled(false);
+            }
+        }
+
+        nemicoPresente = false;
+        btnCombatti.setVisible(false);
+        btnNonCombatti.setVisible(false);
+        btnEsplora.setEnabled(true);
+    }//GEN-LAST:event_btnCombattiActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
         jTextArea1.append("--- APERTURA ZAINO ---\n");
@@ -164,49 +232,39 @@ public class schermataMondo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInventarioActionPerformed
 
     private void btnEsploraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsploraActionPerformed
-        String evento = GestoreEsplorazione.esplora(mioInventario);
+        if (nemicoPresente) {
+            jTextArea1.append("C'è un nemico davanti a te! Devi decidere se combattere o rifiutare.\n");
+            return;
+        }
 
-        if (evento.startsWith("OGGETTO:")) {
-            jTextArea1.append("Trovato: " + evento.split(":")[1] + "\n");
-
-        } else if (evento.equals("NEMICO")) {
-            jTextArea1.append("Nemico apparso!\n");
-
+        double chance = Math.random();
+    
+        if (chance < 0.3) {
+        
+        String[] possibiliOggetti = {"Senzu", "Tuta da combattimento", "Capsula Hoi-Poi","Acqua Miracolosa", "Scouter", "Z-Sword", "Pesetto da 100 tonnellate", "Bastone Nyoi", "Pozione di Re Magno"
+        };
+        
+        String trovato = possibiliOggetti[(int)(Math.random() * possibiliOggetti.length)];
+        mioInventario.aggiungiOggetto(trovato);
+        jTextArea1.append("Hai trovato: " + trovato + "! Salvato nell'inventario.\n");
+        
+        } else if (chance < 0.7) {
+            jTextArea1.append("ATTENZIONE! Un nemico ti sfida. Vuoi combattere?\n");
             nemicoPresente = true;
+            btnCombatti.setEnabled(true);
+            btnNonCombatti.setEnabled(true);
             btnCombatti.setVisible(true);
             btnNonCombatti.setVisible(true);
-
+            btnEsplora.setEnabled(false); 
+        
         } else {
-            jTextArea1.append("Nulla trovato\n");
+            jTextArea1.append("Hai camminato a lungo, ma non hai trovato nulla.\n");
         }
     }//GEN-LAST:event_btnEsploraActionPerformed
 
-    private void btnNonCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNonCombattiActionPerformed
-        jTextArea1.append("Hai evitato il combattimento\n");
-        nemicoPresente = false;
-        btnCombatti.setVisible(false);
-        btnNonCombatti.setVisible(false);
-    }//GEN-LAST:event_btnNonCombattiActionPerformed
-
-    private void btnCombattiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombattiActionPerformed
-        CombattimentoStato res = GestoreCombattimento.eseguiCombattimento(eroe);
-
-        jTextArea1.append("Nemico: " + res.nemico.nome + "\n");
-        jTextArea1.append(res.messaggio + "\n");
-
-        if (res.vittoria) {
-            String drop = mioInventario.dropCasuale();
-            jTextArea1.append("Hai trovato: " + drop + "\n");
-        }
-
-        nemicoPresente = false;
-        btnCombatti.setVisible(false);
-        btnNonCombatti.setVisible(false);
-    }//GEN-LAST:event_btnCombattiActionPerformed
-
     private void btnUsaOggettoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsaOggettoActionPerformed
         String nomeOggetto = JOptionPane.showInputDialog(this,"Cosa vuoi usare?\n" + mioInventario.mostraOggetti(),"Usa Oggetto",JOptionPane.QUESTION_MESSAGE);
-
+        
         if (nomeOggetto == null || nomeOggetto.trim().isEmpty()) {
             return;
         }
@@ -216,57 +274,57 @@ public class schermataMondo extends javax.swing.JFrame {
 
             switch (scelta) {
                 case "senzu":
-                eroe.hp = 100;
-                jTextArea1.append("Hai mangiato un Senzu! HP ripristinati al massimo.\n");
-                break;
+                    eroe.hp = 100; 
+                    jTextArea1.append("Hai mangiato un Senzu! HP ripristinati al massimo.\n");
+                    break;
 
                 case "tuta da combattimento":
-                eroe.difesa += 15;
-                jTextArea1.append("Hai indossato la Tuta. Difesa +15!\n");
-                break;
+                    eroe.difesa += 15;
+                    jTextArea1.append("Hai indossato la Tuta. Difesa +15!\n");
+                    break;
 
                 case "capsula hoi-poi":
-                eroe.attacco += 10;
-                jTextArea1.append("La capsula conteneva un'arma! Attacco +10.\n");
-                break;
+                    eroe.attacco += 10;
+                    jTextArea1.append("La capsula conteneva un'arma! Attacco +10.\n");
+                    break;
 
                 case "acqua miracolosa":
-                eroe.attacco += 20;
-                eroe.hp -= 10;
-                jTextArea1.append("Hai bevuto l'Acqua Miracolosa! Attacco aumentato drasticamente, ma ti senti spossato.\n");
-                break;
+                    eroe.attacco += 20;
+                    eroe.hp -= 10; 
+                    jTextArea1.append("Hai bevuto l'Acqua Miracolosa! Attacco aumentato drasticamente, ma ti senti spossato.\n");
+                    break;
 
                 case "scouter":
-                eroe.attacco += 5;
-                eroe.difesa += 5;
-                jTextArea1.append("Hai attivato lo Scouter! Ora vedi i punti deboli del nemico.\n");
-                break;
+                    eroe.attacco += 5;
+                    eroe.difesa += 5;
+                    jTextArea1.append("Hai attivato lo Scouter! Ora vedi i punti deboli del nemico.\n");
+                    break;
 
                 case "z-sword":
-                eroe.attacco += 40;
-                jTextArea1.append("Impugni la leggendaria Spada Z! La tua forza è ora immensa.\n");
-                break;
+                    eroe.attacco += 40;
+                    jTextArea1.append("Impugni la leggendaria Spada Z! La tua forza è ora immensa.\n");
+                    break;
 
                 case "pesetto da 100 tonnellate":
-                eroe.difesa += 30;
-                jTextArea1.append("Ti sei allenato con i pesi di Re Kaioh. Difesa aumentata!\n");
-                break;
-
+                    eroe.difesa += 30;
+                    jTextArea1.append("Ti sei allenato con i pesi di Re Kaioh. Difesa aumentata!\n");
+                    break;
+                    
                 case "bastone nyoi":
-                eroe.attacco += 12;
-                jTextArea1.append("Il Bastone Nyoi si allunga! Colpisci da lontano: Attacco +12.\n");
-                break;
+                    eroe.attacco += 12;
+                    jTextArea1.append("Il Bastone Nyoi si allunga! Colpisci da lontano: Attacco +12.\n");
+                    break;
 
                 case "pozione di re magno":
-                eroe.hp += 50;
-                if(eroe.hp > 100) eroe.hp = 100;
-                jTextArea1.append("Hai bevuto la Pozione. Hai recuperato 50 HP.\n");
-                break;
+                    eroe.hp += 50;
+                    if(eroe.hp > 100) eroe.hp = 100;
+                    jTextArea1.append("Hai bevuto la Pozione. Hai recuperato 50 HP.\n");
+                    break;
 
                 default:
-                jTextArea1.append("Hai usato " + nomeOggetto + ", ma non ne capisci l'utilità.\n");
-                break;
-            }
+                    jTextArea1.append("Hai usato " + nomeOggetto + ", ma non ne capisci l'utilità.\n");
+                    break;
+                }
         }else {
             JOptionPane.showMessageDialog(this, "Non hai questo oggetto nell'inventario!", "Errore", JOptionPane.ERROR_MESSAGE);
         }
@@ -274,50 +332,25 @@ public class schermataMondo extends javax.swing.JFrame {
 
     private void btnSalvaPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvaPartitaActionPerformed
         try {
-
-            java.io.FileOutputStream fileOut = new java.io.FileOutputStream("salvataggio.dat");
-            java.io.ObjectOutputStream out = new java.io.ObjectOutputStream(fileOut);
-
-            out.writeObject(eroe);
-            out.writeObject(mioInventario);
-
-            out.close();
-            fileOut.close();
-
-            JOptionPane.showMessageDialog(this, "Partita salvata con successo!", "Salvataggio", JOptionPane.INFORMATION_MESSAGE);
-            jTextArea1.append(">>> Progressi salvati nel file 'salvataggio.dat'\n");
-
+        
+        java.io.FileOutputStream fileOut = new java.io.FileOutputStream("salvataggio.dat");
+        java.io.ObjectOutputStream out = new java.io.ObjectOutputStream(fileOut);
+        
+        out.writeObject(eroe);
+        out.writeObject(mioInventario);
+        
+        out.close();
+        fileOut.close();
+        
+        JOptionPane.showMessageDialog(this, "Partita salvata con successo!", "Salvataggio", JOptionPane.INFORMATION_MESSAGE);
+        jTextArea1.append(">>> Progressi salvati nel file 'salvataggio.dat'\n");
+        
         } catch (java.io.IOException i) {
             i.printStackTrace();
             JOptionPane.showMessageDialog(this, "Errore durante il salvataggio!", "Errore", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSalvaPartitaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new schermataMondo().setVisible(true));
-    }
-
+//
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCombatti;
     private javax.swing.JButton btnEsplora;
@@ -325,8 +358,6 @@ public class schermataMondo extends javax.swing.JFrame {
     private javax.swing.JButton btnNonCombatti;
     private javax.swing.JButton btnSalvaPartita;
     private javax.swing.JButton btnUsaOggetto;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblPersonaggio;

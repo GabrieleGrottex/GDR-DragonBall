@@ -4,23 +4,18 @@
  */
 package gdr.dragonball;
 
-import java.io.Serializable;
-
 /**
  *
- * @author grott
+ * @author grottelli.gabriele
  */
-public class Personaggio implements Serializable{
+public class Personaggio implements java.io.Serializable {
     public String nome;
-    public String id;
     public int hp, ki, attacco, difesa;
     public String mossaSpeciale;
 
     public Personaggio(String nomeScelto) {
-        String scelta = nomeScelto.toLowerCase().trim().replace(" ", "_");
+        String scelta = nomeScelto.toLowerCase().trim().replace(" ", "_").replace("-", "_").replace(".", "");
 
-        this.id = scelta;
-        
         switch (scelta) {
             case "goku_ragazzo":
                 this.setStatistiche("Goku (Ragazzo)", 150, 50, 25, 30, "Kamehameha"); break;

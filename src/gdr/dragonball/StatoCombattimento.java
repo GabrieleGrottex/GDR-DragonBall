@@ -6,7 +6,7 @@ package gdr.dragonball;
 
 /**
  *
- * @author grott
+ * @author grottelli.gabriele
  */
 public class StatoCombattimento {
     public Personaggio p;

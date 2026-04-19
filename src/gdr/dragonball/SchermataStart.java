@@ -6,7 +6,7 @@ package gdr.dragonball;
 
 /**
  *
- * @author grott
+ * @author grottelli.gabriele
  */
 public class SchermataStart extends javax.swing.JFrame {
     
@@ -24,9 +24,8 @@ public class SchermataStart extends javax.swing.JFrame {
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null); 
         
-        btnStart.setContentAreaFilled(false);
         btnCaricaPartita.setContentAreaFilled(false);
-        
+        btnStart.setContentAreaFilled(false);
     }
 
     /**
@@ -48,9 +47,13 @@ public class SchermataStart extends javax.swing.JFrame {
 
         btnStart.setFont(new java.awt.Font("Tempus Sans ITC", 3, 24)); // NOI18N
         btnStart.setText("Inzia Il Gioco");
-        btnStart.addActionListener(this::btnStartActionPerformed);
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnStart);
-        btnStart.setBounds(720, 390, 180, 50);
+        btnStart.setBounds(670, 370, 248, 49);
 
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 2, 100)); // NOI18N
         jLabel1.setText("DRAGON BALL");
@@ -59,14 +62,18 @@ public class SchermataStart extends javax.swing.JFrame {
 
         btnCaricaPartita.setFont(new java.awt.Font("Segoe Script", 0, 20)); // NOI18N
         btnCaricaPartita.setText("Carica Partita");
-        btnCaricaPartita.addActionListener(this::btnCaricaPartitaActionPerformed);
+        btnCaricaPartita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaricaPartitaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCaricaPartita);
-        btnCaricaPartita.setBounds(700, 540, 210, 40);
+        btnCaricaPartita.setBounds(690, 510, 200, 70);
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\grott\\Downloads\\Gemini_Generated_Image_wpvu3iwpvu3iwpvu.png")); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1600, 710);
+        jLabel2.setBounds(-20, 0, 1620, 670);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -81,20 +88,20 @@ public class SchermataStart extends javax.swing.JFrame {
         try {
             java.io.FileInputStream fileIn = new java.io.FileInputStream("salvataggio.dat");
             java.io.ObjectInputStream in = new java.io.ObjectInputStream(fileIn);
-
+        
             Personaggio eroeCaricato = (Personaggio) in.readObject();
             Inventario inventarioCaricato = (Inventario) in.readObject();
-
+        
             in.close();
             fileIn.close();
-
+        
             schermataMondo mondo = new schermataMondo(eroeCaricato);
-
+        
             mondo.setInventario(inventarioCaricato);
-
+        
             mondo.setVisible(true);
             this.dispose();
-
+        
         } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Errore nel caricamento: " + e.getMessage());
         }

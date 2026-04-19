@@ -6,14 +6,14 @@ package gdr.dragonball;
 
 import javax.swing.*;
 import java.util.Random;
-
 /**
  *
- * @author grott
+ * @author grottelli.gabriele
  */
-public class SceltaPersonaggio extends javax.swing.JFrame {
+
+public class SceltaPersonaggio extends javax.swing.JFrame { 
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(schermataMondo.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SceltaPersonaggio.class.getName());
     private JButton[] bottoniPersonaggi; 
     private JLabel[] labelImmagini; 
     private Personaggio personaggioSelezionato; 
@@ -109,6 +109,8 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         
         btnAvvia.setText("Avvia con " + nomeVisibile);
         btnAvvia.setVisible(true);
+        
+        System.out.println("DEBUG: Selezionato " + nomeID);
     }
 
     private void avviaGioco() {
@@ -117,6 +119,7 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
             schermataMondo mondo = new schermataMondo(personaggioSelezionato);
             mondo.setVisible(true);
             this.dispose();
+
         } else {
             JOptionPane.showMessageDialog(this, "Seleziona un personaggio prima!");
         }
@@ -131,6 +134,9 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -148,6 +154,12 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
+        jToggleButton1.setText("jToggleButton1");
+
+        jLabel1.setText("jLabel1");
+
+        jLabel8.setText("jLabel2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
@@ -160,7 +172,11 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         jButton2.setBounds(220, 300, 180, 60);
 
         jButton3.setText("jButton3");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(430, 300, 200, 60);
 
@@ -177,17 +193,29 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         jButton6.setBounds(1160, 303, 180, 60);
 
         btnIndietro.setText("Indietro");
-        btnIndietro.addActionListener(this::btnIndietroActionPerformed);
+        btnIndietro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIndietroActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnIndietro);
         btnIndietro.setBounds(380, 430, 190, 60);
 
         btnAvanti.setText("Avanti");
-        btnAvanti.addActionListener(this::btnAvantiActionPerformed);
+        btnAvanti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvantiActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAvanti);
         btnAvanti.setBounds(660, 430, 210, 60);
 
         btnAvvia.setText("Avvia");
-        btnAvvia.addActionListener(this::btnAvviaActionPerformed);
+        btnAvvia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvviaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAvvia);
         btnAvvia.setBounds(982, 423, 210, 70);
 
@@ -218,14 +246,15 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\grott\\Downloads\\Gemini_Generated_Image_sf6v45sf6v45sf6v.png")); // NOI18N
         jLabel9.setText("jLabel2");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(0, 0, 1370, 520);
+        jLabel9.setBounds(0, 0, 1370, 550);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnAvantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvantiActionPerformed
+        indicePagina += BOTTONI_PER_PAGINA;
+        aggiornaBottoni();
+    }//GEN-LAST:event_btnAvantiActionPerformed
 
     private void btnIndietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndietroActionPerformed
         indicePagina -= BOTTONI_PER_PAGINA;
@@ -233,14 +262,13 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
         aggiornaBottoni();
     }//GEN-LAST:event_btnIndietroActionPerformed
 
-    private void btnAvantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvantiActionPerformed
-        indicePagina += BOTTONI_PER_PAGINA;
-        aggiornaBottoni();
-    }//GEN-LAST:event_btnAvantiActionPerformed
-
     private void btnAvviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvviaActionPerformed
         avviaGioco();
     }//GEN-LAST:event_btnAvviaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,12 +305,15 @@ public class SceltaPersonaggio extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
